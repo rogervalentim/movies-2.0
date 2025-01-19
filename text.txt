@@ -1,0 +1,28 @@
+[Inicio] --> [Solicitante: Criar Solicitação de Compra (SIC)] --> [Setor de Compras: Receber SIC]
+  |
+  v
+[Setor de Compras: Solicitar cotações para 3 fornecedores] --> [Fornecedor: Enviar Cotação]
+  |
+  v
+[Setor de Compras: Receber Cotações dos Fornecedores] --> [Setor de Compras: Analisar cotações]
+  |
+  v
+[Setor de Compras: Selecionar Fornecedor] --> [Setor de Compras: Criar Ordem de Compra (OC)] --> [Fornecedor: Receber Ordem de Compra]
+  |
+  v
+[Setor de Recepção: Receber Mercadoria e Fatura] --> [Setor de Recepção: Conferir Mercadoria com Fatura] 
+  |
+  v
+[Gateway de Decisão] --> [Mercadoria OK?]
+  |
+  v
+  |--> Sim --> [Setor de Recepção: Encaminhar Mercadoria para Solicitante] --> [Setor de Recepção: Enviar Fatura para Setor Financeiro]
+  |
+  v
+  |--> Não --> [Setor de Recepção: Rejeitar Mercadoria e Fatura] --> [Fornecedor: Recolher Material]
+  |
+  v
+[Setor Financeiro: Receber Fatura] --> [Setor Financeiro: Programar Pagamento] --> [Setor Financeiro: Efetuar Pagamento ao Fornecedor]
+  |
+  v
+[Fim]
