@@ -8,7 +8,6 @@ interface CardProps {
   name?: string;
   title?: string;
   poster_path: string;
-  vote_average: number;
   release_date?: string;
   first_air_date?: string;
   href?: string;
@@ -19,7 +18,6 @@ export function Card({
   name,
   title,
   poster_path,
-  vote_average,
   release_date,
   first_air_date,
   href
