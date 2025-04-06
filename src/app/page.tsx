@@ -4,14 +4,13 @@ import { Feature } from "./_components/feauture";
 import { Footer } from "./_components/footer";
 import { MoviesTrending } from "./_components/movies-trending";
 import { SeriesTrending } from "./_components/series-trending";
+import { HeroHome } from "./_components/hero-home";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <div className="px-[1.95em] mt-6">
-        <Hero href="/movie" contentType="movie" />
-      </div>
+      <HeroHome href="/movie" contentType="movie" />
       <div className="px-[1.95em] mt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Filmes em tendência</p>
         <a href="#" className="text-white text-sm font-semibold uppercase">

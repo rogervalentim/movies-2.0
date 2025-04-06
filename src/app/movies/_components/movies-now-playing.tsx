@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useCarousel } from "@/_hooks/use-carousel";
-import { CarouselButton } from "@/app/_components/carousel-button";
 import { Card } from "@/app/_components/card";
 import { apiKey } from "@/_utils/api-key";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 interface MoviesNowPlayingData {
   id: number;
@@ -16,13 +19,6 @@ interface MoviesNowPlayingData {
 }
 
 export function MoviesNowPlaying() {
-  const {
-    carouselRef,
-    scrollLeft,
-    isLeftDisabled,
-    scrollRight,
-    isRightDisabled
-  } = useCarousel();
   const [moviesNowPlayingData, setMoviesNowPlayingData] = useState<
     MoviesNowPlayingData[]
   >([]);
@@ -46,31 +42,32 @@ export function MoviesNowPlaying() {
 
   return (
     <>
-      <section
-        ref={carouselRef}
-        className="flex items-center gap-9  overflow-x-scroll  lg:gap-5 [&::-webkit-scrollbar]:hidden"
-      >
-        <CarouselButton
-          direction="left"
-          onClick={scrollLeft}
-          disabled={isLeftDisabled}
-        />
-        {moviesNowPlayingData.map((item) => (
-          <Card
-            key={item.id}
-            title={item.title}
-            poster_path={item.poster_path}
-            id={item.id}
-            href={"/movie"}
-            vote_average={item.vote_average}
-            release_date={item.release_date}
-          />
-        ))}
-        <CarouselButton
-          direction="right"
-          onClick={scrollRight}
-          disabled={isRightDisabled}
-        />
+      <section>
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          slidesPerView={1}
+          navigation
+          breakpoints={{
+            480: { slidesPerView: 1.5, spaceBetween: 15 }, // Telas pequenas
+            768: { slidesPerView: 3, spaceBetween: 20 }, // Tablets
+            1024: { slidesPerView: 4, spaceBetween: 25 }, // Laptops
+            1280: { slidesPerView: 5.5, spaceBetween: 30 } // Telas grandes
+          }}
+        >
+          {moviesNowPlayingData.map((item) => (
+            <SwiperSlide key={item.id}>
+              <Card
+                title={item.title}
+                poster_path={item.poster_path}
+                id={item.id}
+                href={"/movie"}
+                vote_average={item.vote_average}
+                release_date={item.release_date}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </section>
     </>
   );

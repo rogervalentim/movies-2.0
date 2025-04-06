@@ -7,8 +7,10 @@ import { Cast } from "./cast";
 import { Similar } from "./similar";
 import { Recommended } from "./recommended";
 import Image from "next/image";
-import { CarouselButton } from "./carousel-button";
-import { useCarousel } from "@/_hooks/use-carousel";
+import ImageCarousel from "./image-carousel";
+import { RenderStars } from "@/utils/render-stars";
+import { formatDate } from "@/_utils/format-date";
+import { formatDuration } from "@/_utils/format-duration";
 
 interface DetailsProps {
   id: number;
@@ -20,14 +22,6 @@ export function Details({ id, contentType }: DetailsProps) {
     null
   );
   const [movieImages, setMovieImages] = useState<Backdrops[]>([]);
-
-  const {
-    carouselRef,
-    isLeftDisabled,
-    isRightDisabled,
-    scrollRight,
-    scrollLeft
-  } = useCarousel();
 
   useEffect(() => {
     fetchMovieDetail();
@@ -42,6 +36,7 @@ export function Details({ id, contentType }: DetailsProps) {
 
       const data = await response.json();
       setMovieDetails(data);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -67,7 +62,7 @@ export function Details({ id, contentType }: DetailsProps) {
 
   return (
     <section>
-      <div className="lg:hidden flex flex-col gap-4 px-[1.95em] my-6">
+      <div className="lg:hidden flex flex-col  gap-4 px-[1.95em] py-6 bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
         <Image
           src={`https://image.tmdb.org/t/p/w780${movieDetails?.poster_path}`}
           alt="image"
@@ -79,77 +74,189 @@ export function Details({ id, contentType }: DetailsProps) {
           className="w-full h-full object-cover border border-[#333333] rounded-[3px]"
         />
 
+        {contentType === "movie" && (
+          <p className="text-slate-400 text-sm  leading-relaxed">
+            {formatDate(movieDetails?.release_date ?? "")}
+          </p>
+        )}
+        {contentType === "tv" && (
+          <p className="text-slate-400 text-sm  leading-relaxed">
+            {formatDate(movieDetails?.first_air_date ?? "")}
+          </p>
+        )}
+
+        <h1 className="text-white font-bold text-xl md:text-3xl leading-tight">
+          {movieDetails?.title || movieDetails?.name || "Título Indisponível"}
+        </h1>
+
+        <div className="flex flex-wrap gap-1">
+          {movieDetails?.genres.map((genre) => (
+            <span
+              key={genre.id}
+              className=" text-slate-400  text-xs w-fit font-medium me-2 px-2.5 py-0.5 max-w-full rounded-full border-[0.3px] border-[#333333]"
+            >
+              {genre.name}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-3">
+          <span className="text-white">
+            {movieDetails?.vote_average?.toFixed(1)}
+          </span>
+          <span className="flex">
+            {RenderStars(movieDetails?.vote_average)}
+          </span>
+          {movieDetails?.number_of_seasons && (
+            <div>
+              <p className="text-white">
+                Número de temporadas: {movieDetails?.number_of_seasons}
+              </p>
+            </div>
+          )}
+
+          {movieDetails?.runtime && (
+            <div>
+              <p className="text-white">
+                Duração: {formatDuration(movieDetails?.runtime)}
+              </p>
+            </div>
+          )}
+          <div>
+            {movieDetails?.imdb_id && (
+              <a
+                href={`https://www.imdb.com/title/${movieDetails?.imdb_id}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`Veja  ${movieDetails?.name || movieDetails?.title} no IMDB`}
+              >
+                <Image
+                  src="/imdb-logo-2016-1.svg"
+                  width={50}
+                  height={50}
+                  alt="Logo do imdb"
+                />
+              </a>
+            )}
+          </div>
+        </div>
         <p className="text-slate-400 text-base md:text-lg leading-relaxed">
           {movieDetails?.overview ||
             "Nenhuma descrição disponível para este filme."}
         </p>
       </div>
 
-      <div className="relative w-full h-[500px] hidden lg:flex">
-        <div className="w-[40%] h-full pl-[1.95rem] bg-[#0a0a0a] flex items-center justify-center">
-          <div className="flex flex-col gap-4 px-4">
-            <h1 className="text-white font-bold text-3xl md:text-4xl leading-tight">
-              {movieDetails?.title ||
-                movieDetails?.name ||
-                "Título Indisponível"}
-            </h1>
-            <p className="text-slate-400 text-base md:text-lg leading-relaxed">
-              {movieDetails?.overview ||
-                "Nenhuma descrição disponível para este filme."}
-            </p>
+      <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
+        <div className="relative h-[500px] py-6 hidden lg:flex justify-between px-[1.95em]">
+          <div className="w-[40%] h-full flex items-center justify-center">
+            <div className="flex flex-col gap-4 px-4">
+              {contentType === "movie" && (
+                <p className="text-slate-400 text-sm  leading-relaxed">
+                  {formatDate(movieDetails?.release_date ?? "")}
+                </p>
+              )}
+
+              {contentType === "tv" && (
+                <p className="text-slate-400 text-sm  leading-relaxed">
+                  {formatDate(movieDetails?.first_air_date ?? "")}
+                </p>
+              )}
+              <h1 className="text-white font-bold text-3xl md:text-4xl leading-tight">
+                {movieDetails?.title ||
+                  movieDetails?.name ||
+                  "Título Indisponível"}
+              </h1>
+
+              <div className="flex flex-wrap gap-1">
+                {movieDetails?.genres.map((genre) => (
+                  <span
+                    key={genre.id}
+                    className=" text-slate-400  text-xs w-fit font-medium me-2 px-2.5 py-0.5 max-w-full rounded-full border-[0.3px] border-[#333333]"
+                  >
+                    {genre.name}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-3">
+                <span className="text-white">
+                  {movieDetails?.vote_average?.toFixed(1)}
+                </span>
+                <span className="flex">
+                  {RenderStars(movieDetails?.vote_average)}
+                </span>
+
+                {movieDetails?.runtime && (
+                  <div>
+                    <p className="text-white">
+                      Duração: {formatDuration(movieDetails?.runtime)}
+                    </p>
+                  </div>
+                )}
+                <div>
+                  {movieDetails?.imdb_id && (
+                    <a
+                      href={`https://www.imdb.com/title/${movieDetails?.imdb_id}/`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={`Veja  ${movieDetails?.name || movieDetails?.title} no IMDB`}
+                    >
+                      <Image
+                        src="/imdb-logo-2016-1.svg"
+                        width={50}
+                        height={50}
+                        alt="Logo do imdb"
+                      />
+                    </a>
+                  )}
+                </div>
+
+                {movieDetails?.number_of_seasons && (
+                  <div>
+                    <p className="text-white">
+                      Número de temporadas: {movieDetails?.number_of_seasons}
+                    </p>
+                  </div>
+                )}
+              </div>
+              <p className="text-slate-400 text-base  leading-relaxed">
+                {movieDetails?.overview ||
+                  "Nenhuma descrição disponível para este filme."}
+              </p>
+            </div>
+          </div>
+
+          <div className="relative w-[60%] h-[500px]">
+            <div
+              className="w-full h-full bg-cover bg-center rounded-lg border border-[#333333]"
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movieDetails?.backdrop_path})`
+              }}
+            ></div>
+            <div
+              className="absolute bottom-4 left-4 w-32 h-48 bg-cover rounded-lg border border-[#333333]"
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movieDetails?.poster_path})`
+              }}
+            ></div>
           </div>
         </div>
-
-        <div
-          className="w-[60%] min-h-screen"
-          style={{
-            backgroundImage: `
-        linear-gradient(to right, #0a0a0a, transparent),
-        url(https://image.tmdb.org/t/p/w1280/${movieDetails?.backdrop_path})
-      `,
-            backgroundPosition: "right",
-            backgroundSize: "cover"
-          }}
-        ></div>
       </div>
 
-      <div className="pt-10 lg:pt-36 px-[1.95rem] ">
-        <Cast contentType={contentType} contentId={id} />
+      <div className="my-8 px-[1.95rem] ">
+        <Cast
+          contentType={contentType === "movie" ? "movie" : "serie"}
+          contentId={id}
+        />
       </div>
 
-      <h2 className="text-white font-bold text-xl text-center md:text-2xl leading-tight my-10">
-        Galeria de fotos
-      </h2>
-
-      <div className="px-[1.95rem]">
-        <div
-          ref={carouselRef}
-          className="flex items-center justify-center  mt-4  overflow-x-scroll  gap-3 [&::-webkit-scrollbar]:hidden"
-        >
-          <CarouselButton
-            direction="left"
-            onClick={scrollLeft}
-            disabled={isLeftDisabled}
-          />
-          {movieImages?.map((item) => (
-            <Image
-              src={`https://image.tmdb.org/t/p/w780${item.file_path}`}
-              alt="image"
-              width={0}
-              height={0}
-              key={item.file_path}
-              quality={100}
-              sizes="100vh"
-              className="w-full h-[250px] object-cover border border-[#333333] rounded-[3px]"
-            />
-          ))}
-          <CarouselButton
-            direction="right"
-            onClick={scrollRight}
-            disabled={isRightDisabled}
-          />
+      {movieImages.length === 0 ? (
+        ""
+      ) : (
+        <div className="my-8 ">
+          <ImageCarousel movieImages={movieImages} />
         </div>
-      </div>
+      )}
 
       <div className="my-8 px-[1.95rem]">
         <Recommended

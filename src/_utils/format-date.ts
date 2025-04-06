@@ -20,5 +20,5 @@ export const formatDate = (dateString: string) => {
   ];
 
   const month = months[monthIndex];
-  return `${day}, ${month}, ${year}`;
+  return `${day} de ${month} de ${year}`;
 };

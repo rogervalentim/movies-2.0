@@ -16,6 +16,9 @@ export interface MovieDetailsData {
   title: string;
   vote_average: number;
   release_date: string;
+  first_air_date: string;
+  imdb_id: string;
+  number_of_seasons: number;
   runtime: number;
   original_title: string;
   budget: number;
@@ -44,13 +47,14 @@ export interface MovieDetailsData {
   ];
 }
 
-export interface ActorDetails {
+export interface PersonDetailsData {
   id: number;
   name: string;
-  character: string;
+  profile_path: string;
   biography: string;
-  profile_path: string | null;
-  birthday: string | number;
-  place_of_birth: number;
+  character: string;
+  birthday: string;
+  deathday: string | null;
+  place_of_birth: string;
   known_for_department: string;
 }

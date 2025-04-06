@@ -3,8 +3,11 @@
 import { apiKey } from "@/_utils/api-key";
 import { useEffect, useState } from "react";
 import { Card } from "./card";
-import { CarouselButton } from "./carousel-button";
-import { useCarousel } from "@/_hooks/use-carousel";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 interface RecommendedData {
   id: number;
@@ -30,14 +33,6 @@ export function Recommended({
   name
 }: RecommendedProps) {
   const [data, setData] = useState<RecommendedData[] | null>([]);
-
-  const {
-    carouselRef,
-    isLeftDisabled,
-    isRightDisabled,
-    scrollRight,
-    scrollLeft
-  } = useCarousel();
 
   useEffect(() => {
     fetchSimilarMovies();
@@ -66,33 +61,41 @@ export function Recommended({
           <h2 className="text-white font-bold text-xl md:text-2xl leading-tight ">
             Recomendados de acordo com {name || title}
           </h2>
-          <section
-            ref={carouselRef}
-            className="flex items-center gap-3 pt-8  overflow-x-scroll  lg:gap-5 [&::-webkit-scrollbar]:hidden"
-          >
-            <CarouselButton
-              direction="left"
-              onClick={scrollLeft}
-              disabled={isLeftDisabled}
-            />
-            {data?.map((item) => (
-              <Card
-                key={item.id}
-                poster_path={item.poster_path}
-                name={item.name}
-                title={item.title}
-                vote_average={item.vote_average}
-                first_air_date={item.first_air_date}
-                release_date={item.release_date}
-                id={item.id}
-                href={contentType === "movie" ? "/movie" : "/serie"}
-              />
-            ))}
-            <CarouselButton
-              direction="right"
-              onClick={scrollRight}
-              disabled={isRightDisabled}
-            />
+          <section className="pt-8">
+            <Swiper
+              modules={[Navigation, Pagination]}
+              spaceBetween={20}
+              slidesPerView={1}
+              navigation
+              breakpoints={{
+                480: { slidesPerView: 1.5, spaceBetween: 15 }, // Telas pequenas
+                768: { slidesPerView: 3, spaceBetween: 20 }, // Tablets
+                1024: { slidesPerView: 4, spaceBetween: 25 }, // Laptops
+                1280: { slidesPerView: 5.5, spaceBetween: 30 } // Telas grandes
+              }}
+            >
+              {data?.map((item) => (
+                <SwiperSlide
+                  key={
+                    contentType === "movie"
+                      ? "movie" + item.id
+                      : "serie" + item.id
+                  }
+                  className="w-[435px]  relative"
+                >
+                  <Card
+                    poster_path={item.poster_path}
+                    name={item.name}
+                    title={item.title}
+                    vote_average={item.vote_average}
+                    first_air_date={item.first_air_date}
+                    release_date={item.release_date}
+                    id={item.id}
+                    href={contentType === "movie" ? "/movie" : "/serie"}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </section>
         </>
       )}

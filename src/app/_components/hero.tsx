@@ -2,28 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { apiKey } from "../../_utils/api-key";
-import { Button } from "./button";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { formatDate } from "@/_utils/format-date";
+import { RenderStars } from "@/utils/render-stars";
+import { MovieDetailsData } from "@/types";
 
 interface HeroProps {
   contentType: string;
   href: string;
 }
 
-interface Data {
-  id: number;
-  title: string;
-  name: string;
-  poster_path: string;
-  release_date: string;
-  first_air_date: string;
-  overview: string;
-  backdrop_path: string;
-}
-
 export function Hero({ contentType, href }: HeroProps) {
-  const [movie, setMovie] = useState<Data | null>(null);
+  const [movie, setMovie] = useState<MovieDetailsData | null>(null);
 
   useEffect(() => {
     fetchData();
@@ -42,31 +33,114 @@ export function Hero({ contentType, href }: HeroProps) {
   }
 
   return (
-    <Link href={`${href}/${movie?.id}`} className="relative h-screen w-full">
-      <Image
-        alt={movie?.title || movie?.name || ""}
-        src={`https://image.tmdb.org/t/p/w1280${movie?.backdrop_path}`}
-        width={1280}
-        height={780}
-        className="object-cover object-center w-full h-full border border-[#333333] hover:border-white rounded-[3px]"
-      />
-      <div className="absolute inset-0 w-full h-full object-cover filter blur-sm" />
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-      <div className="absolute inset-0 flex flex-col gap-4 items-center px-10 lg:px-40 justify-center">
-        <h1 className="text-4xl text-white font-bold">
-          {" "}
-          {movie?.title || movie?.name}
-        </h1>
-        <p className="line-clamp-3 text-lg  text-center text-white/80">
-          {" "}
-          {movie?.overview}
-        </p>
-
-        <Button
-          title="Ver detalhes"
-          viewDetails={`Ver detalhes ${movie?.title || movie?.name}`}
+    <>
+      <div className="lg:hidden flex flex-col  gap-4 px-[1.95em] py-6 bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
+        <Image
+          src={`https://image.tmdb.org/t/p/w780${movie?.poster_path}`}
+          alt="image"
+          width={0}
+          height={0}
+          key={movie?.id}
+          quality={100}
+          sizes="100vh"
+          className="w-full h-full object-cover border border-[#333333] rounded-[3px]"
         />
+
+        {contentType === "movie" && (
+          <p className="text-slate-400 text-sm  leading-relaxed">
+            {formatDate(movie?.release_date ?? "")}
+          </p>
+        )}
+        {contentType === "tv" && (
+          <p className="text-slate-400 text-sm  leading-relaxed">
+            {formatDate(movie?.first_air_date ?? "")}
+          </p>
+        )}
+
+        <h1 className="text-white font-bold text-xl md:text-3xl leading-tight">
+          {movie?.title || movie?.name || "Título Indisponível"}
+        </h1>
+
+        <div className="flex items-center gap-3">
+          <span className="text-white">{movie?.vote_average?.toFixed(1)}</span>
+          <span className="flex">{RenderStars(movie?.vote_average)}</span>
+          <div>
+            {movie?.imdb_id && (
+              <a
+                href={`https://www.imdb.com/title/${movie?.imdb_id}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={`Veja  ${movie?.name || movie?.title} no IMDB`}
+              >
+                <Image
+                  src="/imdb-logo-2016-1.svg"
+                  width={50}
+                  height={50}
+                  alt="Logo do imdb"
+                />
+              </a>
+            )}
+          </div>
+        </div>
+        <p className="text-slate-400 text-base md:text-lg leading-relaxed">
+          {movie?.overview || "Nenhuma descrição disponível para este filme."}
+        </p>
       </div>
-    </Link>
+      <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
+        <div className="relative h-[500px] py-6 hidden lg:flex justify-between px-[1.95em]">
+          <Link
+            href={`${href}/${movie?.id}`}
+            className="relative w-full h-[100%] hidden lg:flex justify-between  gap-[1.95em] items-center"
+          >
+            <div className="w-[40%] h-full flex items-center justify-center">
+              <div className="flex flex-col gap-4 px-4">
+                {contentType === "movie" && (
+                  <p className="text-slate-400 text-sm  leading-relaxed">
+                    {formatDate(movie?.release_date ?? "")}
+                  </p>
+                )}
+
+                {contentType === "tv" && (
+                  <p className="text-slate-400 text-sm  leading-relaxed">
+                    {formatDate(movie?.first_air_date ?? "")}
+                  </p>
+                )}
+                <h1 className="text-white font-bold text-3xl md:text-4xl leading-tight">
+                  {movie?.title || movie?.name || "Título Indisponível"}
+                </h1>
+
+                <div className="flex items-center gap-3">
+                  <span className="text-white">
+                    {movie?.vote_average?.toFixed(1)}
+                  </span>
+                  <span className="flex">
+                    {RenderStars(movie?.vote_average)}
+                  </span>
+                </div>
+                <p className="text-slate-400 text-base  leading-relaxed">
+                  {movie?.overview ||
+                    "Nenhuma descrição disponível para este filme."}
+                </p>
+              </div>
+            </div>
+
+            <div className="relative w-[60%] h-[500px]">
+              <div
+                className="w-full h-full bg-cover bg-center rounded-lg border border-[#333333]"
+                style={{
+                  backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movie?.backdrop_path})`
+                }}
+              ></div>
+              <div
+                className="absolute bottom-4 left-4 w-32 h-48 bg-cover rounded-lg border border-[#333333]"
+                style={{
+                  backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie?.poster_path})`
+                }}
+              ></div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }

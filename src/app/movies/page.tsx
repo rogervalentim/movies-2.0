@@ -11,9 +11,7 @@ export default function MoviesPage() {
     <>
       <Header />
 
-      <div className="px-[1.95em] mt-6">
-        <Hero href="movie" contentType="movie" />
-      </div>
+      <Hero href="movie" contentType="movie" />
 
       <div className="px-[1.95em] mt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Filmes em tendência</p>

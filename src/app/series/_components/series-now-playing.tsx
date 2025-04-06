@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useCarousel } from "@/_hooks/use-carousel";
-import { CarouselButton } from "@/app/_components/carousel-button";
 import { Card } from "@/app/_components/card";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { apiKey } from "@/_utils/api-key";
 
 interface SeriesNowPlayingData {
@@ -16,13 +19,6 @@ interface SeriesNowPlayingData {
 }
 
 export function SeriesNowPlaying() {
-  const {
-    carouselRef,
-    scrollLeft,
-    isLeftDisabled,
-    scrollRight,
-    isRightDisabled
-  } = useCarousel();
   const [seriesNowPlaying, setSeriesNowPlaying] = useState<
     SeriesNowPlayingData[]
   >([]);
@@ -45,31 +41,32 @@ export function SeriesNowPlaying() {
 
   return (
     <>
-      <section
-        ref={carouselRef}
-        className="flex items-center gap-9  overflow-x-scroll  lg:gap-5 [&::-webkit-scrollbar]:hidden"
-      >
-        <CarouselButton
-          direction="left"
-          onClick={scrollLeft}
-          disabled={isLeftDisabled}
-        />
-        {seriesNowPlaying.map((item) => (
-          <Card
-            key={item.id}
-            id={item.id}
-            href="/serie"
-            name={item.name}
-            poster_path={item.poster_path}
-            vote_average={item.vote_average}
-            first_air_date={item.first_air_date}
-          />
-        ))}
-        <CarouselButton
-          direction="right"
-          onClick={scrollRight}
-          disabled={isRightDisabled}
-        />
+      <section>
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          slidesPerView={1}
+          navigation
+          breakpoints={{
+            480: { slidesPerView: 1.5, spaceBetween: 15 }, // Telas pequenas
+            768: { slidesPerView: 3, spaceBetween: 20 }, // Tablets
+            1024: { slidesPerView: 4, spaceBetween: 25 }, // Laptops
+            1280: { slidesPerView: 5.5, spaceBetween: 30 } // Telas grandes
+          }}
+        >
+          {seriesNowPlaying.map((item) => (
+            <SwiperSlide key={item.id}>
+              <Card
+                id={item.id}
+                href="/serie"
+                name={item.name}
+                poster_path={item.poster_path}
+                vote_average={item.vote_average}
+                first_air_date={item.first_air_date}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </section>
     </>
   );

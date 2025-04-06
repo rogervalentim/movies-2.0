@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useCarousel } from "@/_hooks/use-carousel";
-import { CarouselButton } from "@/app/_components/carousel-button";
 import { Card } from "@/app/_components/card";
 import { apiKey } from "@/_utils/api-key";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 interface MoviesPopularData {
   id: number;
@@ -16,13 +19,6 @@ interface MoviesPopularData {
 }
 
 export function MoviesPopular() {
-  const {
-    carouselRef,
-    scrollLeft,
-    isLeftDisabled,
-    scrollRight,
-    isRightDisabled
-  } = useCarousel();
   const [moviesPopular, setMoviesPopular] = useState<MoviesPopularData[]>([]);
 
   useEffect(() => {
@@ -44,31 +40,32 @@ export function MoviesPopular() {
 
   return (
     <>
-      <section
-        ref={carouselRef}
-        className="flex items-center gap-9  overflow-x-scroll  lg:gap-5 [&::-webkit-scrollbar]:hidden"
-      >
-        <CarouselButton
-          direction="left"
-          onClick={scrollLeft}
-          disabled={isLeftDisabled}
-        />
-        {moviesPopular.map((item) => (
-          <Card
-            key={item.id}
-            title={item.title}
-            poster_path={item.poster_path}
-            vote_average={item.vote_average}
-            id={item.id}
-            href={"/movie"}
-            release_date={item.release_date}
-          />
-        ))}
-        <CarouselButton
-          direction="right"
-          onClick={scrollRight}
-          disabled={isRightDisabled}
-        />
+      <section>
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          slidesPerView={1}
+          navigation
+          breakpoints={{
+            480: { slidesPerView: 1.5, spaceBetween: 15 }, // Telas pequenas
+            768: { slidesPerView: 3, spaceBetween: 20 }, // Tablets
+            1024: { slidesPerView: 4, spaceBetween: 25 }, // Laptops
+            1280: { slidesPerView: 5.5, spaceBetween: 30 } // Telas grandes
+          }}
+        >
+          {moviesPopular.map((item) => (
+            <SwiperSlide key={item.id}>
+              <Card
+                title={item.title}
+                poster_path={item.poster_path}
+                vote_average={item.vote_average}
+                id={item.id}
+                href={"/movie"}
+                release_date={item.release_date}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </section>
     </>
   );

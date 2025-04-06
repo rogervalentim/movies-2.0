@@ -11,9 +11,7 @@ export default function SeriesPage() {
     <>
       <Header />
 
-      <div className="px-[1.95em] mt-6">
-        <Hero href="/serie" contentType="tv" />
-      </div>
+      <Hero href="/serie" contentType="tv" />
 
       <div className="px-[1.95em] mt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Séries em tendência</p>

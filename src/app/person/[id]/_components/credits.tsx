@@ -1,60 +1,67 @@
 "use client";
 
-import { apiKey } from "@/_utils/api-key";
+import { Card } from "@/app/_components/card";
 import { useEffect, useState } from "react";
-import { Card } from "./card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { apiKey } from "@/_utils/api-key";
 
-interface SimilarData {
+interface CreditsProps {
+  contentId: number;
+  name: string;
+}
+
+interface CreditsData {
   id: number;
   poster_path: string;
   name: string;
   title: string;
   vote_average: number;
+  media_type: string;
   release_date: string;
   first_air_date: string;
 }
 
-interface SimilarProps {
-  id: number;
-  contentType: string;
-  name: string;
-  title: string;
-}
-
-export function Similar({ id, contentType, name, title }: SimilarProps) {
-  const [data, setData] = useState<SimilarData[] | null>([]);
+export function Credits({ contentId, name }: CreditsProps) {
+  const [creditsData, setCreditsData] = useState<CreditsData[]>([]);
 
   useEffect(() => {
-    fetchSimilarMovies();
-  }, [id]);
+    fetchCreditsData();
+  }, []);
 
-  async function fetchSimilarMovies() {
+  async function fetchCreditsData() {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/${contentType}/${id}/similar?api_key=${apiKey}&language=pt-BR`
+        `https://api.themoviedb.org/3/person/${contentId}/combined_credits?api_key=${apiKey}&language=pt-BR`
       );
       const data = await response.json();
-      setData(data.results);
+
+      const uniqueCredits = data.cast.reduce(
+        (acc: CreditsData[], current: CreditsData) => {
+          const x = acc.find((item) => item.id === current.id);
+          if (!x) {
+            acc.push(current);
+          }
+          return acc;
+        },
+        []
+      );
+
+      setCreditsData(uniqueCredits);
     } catch (error) {
       console.log(error);
     }
   }
 
-  if (!data || data.length === 0) {
-    return null;
-  }
-
   return (
     <>
       <h2 className="text-white font-bold text-xl md:text-2xl leading-tight">
-        Parecido com {name || title}
+        Participações de {name}
       </h2>
-      <section className="pt-8 ">
+      <section className="pt-8">
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={20}
@@ -67,13 +74,8 @@ export function Similar({ id, contentType, name, title }: SimilarProps) {
             1280: { slidesPerView: 5.5, spaceBetween: 30 } // Telas grandes
           }}
         >
-          {data.map((item) => (
-            <SwiperSlide
-              key={
-                contentType === "movie" ? "movie" + item.id : "serie" + item.id
-              }
-              className="w-[435px] relative"
-            >
+          {creditsData.map((item) => (
+            <SwiperSlide key={item.id} className="w-[435px] relative">
               <Card
                 poster_path={item.poster_path}
                 name={item.name}
@@ -82,7 +84,7 @@ export function Similar({ id, contentType, name, title }: SimilarProps) {
                 first_air_date={item.first_air_date}
                 release_date={item.release_date}
                 id={item.id}
-                href={contentType === "movie" ? "/movie" : "/serie"}
+                href={item.media_type === "movie" ? "/movie" : "/serie"}
               />
             </SwiperSlide>
           ))}

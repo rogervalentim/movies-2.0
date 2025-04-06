@@ -3,8 +3,11 @@
 import { Card } from "@/app/_components/card";
 import { apiKey } from "@/_utils/api-key";
 import { useEffect, useState } from "react";
-import { useCarousel } from "@/_hooks/use-carousel";
-import { CarouselButton } from "./carousel-button";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 interface SeriesTrendingData {
   id: number;
@@ -16,13 +19,6 @@ interface SeriesTrendingData {
 }
 
 export function SeriesTrending() {
-  const {
-    carouselRef,
-    isLeftDisabled,
-    isRightDisabled,
-    scrollRight,
-    scrollLeft
-  } = useCarousel();
   const [seriesTrendingData, setSeriesTrendingData] = useState<
     SeriesTrendingData[]
   >([]);
@@ -46,31 +42,33 @@ export function SeriesTrending() {
 
   return (
     <>
-      <section
-        ref={carouselRef}
-        className="flex items-center gap-9  overflow-x-scroll  lg:gap-5 [&::-webkit-scrollbar]:hidden"
-      >
-        <CarouselButton
-          direction="left"
-          onClick={scrollLeft}
-          disabled={isLeftDisabled}
-        />
-        {seriesTrendingData.map((item) => (
-          <Card
-            key={item.id}
-            poster_path={item.poster_path}
-            name={item.name}
-            vote_average={item.vote_average}
-            first_air_date={item.first_air_date}
-            id={item.id}
-            href="/serie"
-          />
-        ))}
-        <CarouselButton
-          direction="right"
-          onClick={scrollRight}
-          disabled={isRightDisabled}
-        />
+      <section>
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          slidesPerView={1}
+          navigation
+          breakpoints={{
+            480: { slidesPerView: 1.5, spaceBetween: 15 }, // Telas pequenas
+            768: { slidesPerView: 3, spaceBetween: 20 }, // Tablets
+            1024: { slidesPerView: 4, spaceBetween: 25 }, // Laptops
+            1280: { slidesPerView: 5.5, spaceBetween: 30 } // Telas grandes
+          }}
+        >
+          {seriesTrendingData.map((item) => (
+            <SwiperSlide key={item.id} className="w-[435px] relative">
+              <Card
+                key={item.id}
+                poster_path={item.poster_path}
+                name={item.name}
+                vote_average={item.vote_average}
+                first_air_date={item.first_air_date}
+                id={item.id}
+                href="/serie"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </section>
     </>
   );
