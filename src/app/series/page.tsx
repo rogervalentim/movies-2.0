@@ -19,7 +19,7 @@ export default function SeriesPage() {
           Ver todos
         </a>
       </div>
-      <div className="px-[1.95rem] mt-8">
+      <div className="pl-[1.95rem] md:px-[1.95em] mt-8">
         <SeriesTrending />
       </div>
 
@@ -33,7 +33,7 @@ export default function SeriesPage() {
         </a>
       </div>
 
-      <div className="px-[1.95em] mt-8">
+      <div className="pl-[1.95rem] md:px-[1.95em] mt-8">
         <SeriesTopRated />
       </div>
 
@@ -44,7 +44,7 @@ export default function SeriesPage() {
         </a>
       </div>
 
-      <div className="px-[1.95em] mt-8">
+      <div className="pl-[1.95rem] md:px-[1.95em] mt-8">
         <SeriesNowPlaying />
       </div>
 
@@ -55,7 +55,7 @@ export default function SeriesPage() {
         </a>
       </div>
 
-      <div className="px-[1.95em] mt-8">
+      <div className="pl-[1.95rem] md:px-[1.95em] mt-8">
         <SeriesPopular />
       </div>
 

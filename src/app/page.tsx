@@ -1,5 +1,4 @@
 import { Header } from "./_components/header";
-import { Hero } from "./_components/hero";
 import { Feature } from "./_components/feauture";
 import { Footer } from "./_components/footer";
 import { MoviesTrending } from "./_components/movies-trending";
@@ -17,7 +16,7 @@ export default function Home() {
           Ver todos
         </a>
       </div>
-      <div className="px-[1.95rem] mt-8">
+      <div className="pl-[1.95rem] md:px-[1.95rem] mt-8">
         <MoviesTrending />
       </div>
 
@@ -32,7 +31,7 @@ export default function Home() {
         </a>
       </div>
 
-      <div className="px-[1.95em] mt-8">
+      <div className="pl-[1.95rem] md:px-[1.95rem] mt-8">
         <SeriesTrending />
       </div>
 

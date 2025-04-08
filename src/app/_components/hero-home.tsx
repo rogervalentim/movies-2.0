@@ -48,12 +48,12 @@ export function HeroHome({ contentType, href }: HeroProps) {
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
               Descubra os Filmes e Séries Mais Populares!
             </h1>
-            <p className="text-slate-400 text-lg">
+            <p className="text-slate-400 text-wrap text-base lg:text-lg">
               Explore os títulos que estão em alta! Confira os filmes e séries
               mais assistidos do momento e fique por dentro dos sucessos que
               todo mundo está comentando. Não perca nenhuma novidade!
             </p>
-            <div className="flex justify-center gap-[1.95em] relative">
+            <div className="flex justify-center flex-wrap gap-[1.95em] relative">
               {movies.map((movie) => (
                 <Link
                   key={movie.id}

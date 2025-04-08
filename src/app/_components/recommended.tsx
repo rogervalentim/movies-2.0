@@ -65,10 +65,10 @@ export function Recommended({
             <Swiper
               modules={[Navigation, Pagination]}
               spaceBetween={20}
-              slidesPerView={1}
+              slidesPerView={1.1}
               navigation
               breakpoints={{
-                480: { slidesPerView: 1.5, spaceBetween: 15 }, // Telas pequenas
+                480: { slidesPerView: 1, spaceBetween: 10 }, // Telas pequenas
                 768: { slidesPerView: 3, spaceBetween: 20 }, // Tablets
                 1024: { slidesPerView: 4, spaceBetween: 25 }, // Laptops
                 1280: { slidesPerView: 5.5, spaceBetween: 30 } // Telas grandes
@@ -81,7 +81,7 @@ export function Recommended({
                       ? "movie" + item.id
                       : "serie" + item.id
                   }
-                  className="w-[435px]  relative"
+                  className="w-full  relative"
                 >
                   <Card
                     poster_path={item.poster_path}

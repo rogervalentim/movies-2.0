@@ -22,8 +22,9 @@ export function Header() {
     <header className="sticky top-0 z-[1000] w-full border-b border-white  bg-background">
       <div className="flex justify-between py-4 items-center px-[1.95em] sticky top-0 z-50">
         <div className="flex items-center justify-between gap-12">
-          <Clapperboard className="size-9 fill-white text-transparent" />
-
+          <Link href="/">
+            <Clapperboard className="size-9 fill-white text-transparent" />
+          </Link>
           <ul className="hidden lg:flex items-center gap-9 ">
             {[
               { name: "Início", href: "/" },
@@ -69,7 +70,7 @@ export function Header() {
       </div>
 
       {toggleMenu && (
-        <ul className="flex flex-col w-full h-screen items-center justify-center z-50 bg-white px-[1.95em] lg:hidden gap-3">
+        <ul className="flex flex-col  h-screen items-center justify-center z-50 bg-white px-[1.95em] lg:hidden gap-3">
           {[
             { name: "Início", href: "/" },
             { name: "Filmes", href: "/movies" },

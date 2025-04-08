@@ -50,20 +50,17 @@ export function Cast({ contentType, contentId }: CastProps) {
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={20}
-          slidesPerView={1}
+          slidesPerView={1.1}
           navigation
           breakpoints={{
-            480: { slidesPerView: 1.5, spaceBetween: 15 }, // Telas pequenas
+            480: { slidesPerView: 1, spaceBetween: 10 }, // Telas pequenas
             768: { slidesPerView: 3, spaceBetween: 20 }, // Tablets
             1024: { slidesPerView: 4, spaceBetween: 25 }, // Laptops
             1280: { slidesPerView: 5.5, spaceBetween: 30 } // Telas grandes
           }}
         >
           {cast.map((item) => (
-            <SwiperSlide
-              className="w-[435px] relative"
-              key={`person- ${item.id}`}
-            >
+            <SwiperSlide className="w-full relative" key={`person- ${item.id}`}>
               <Link href={`/person/${item.id}`}>
                 <div className="rounded-[3px] relative h-[450px] cursor-pointer border border-[#333333] hover:border-white">
                   {item?.profile_path ? (
@@ -71,9 +68,10 @@ export function Cast({ contentType, contentId }: CastProps) {
                       src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
                       alt={item.name ?? ""}
                       title={item.name}
-                      width={235}
-                      height={320}
+                      width={0}
+                      height={0}
                       quality={100}
+                      sizes="100vh"
                       className="w-full h-[320px] brightness-75 hover:brightness-100 object-cover"
                     />
                   ) : (

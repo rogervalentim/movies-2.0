@@ -118,7 +118,7 @@ export function Details({ id, contentType }: DetailsProps) {
           {movieDetails?.runtime && (
             <div>
               <p className="text-white">
-                Duração: {formatDuration(movieDetails?.runtime)}
+                {formatDuration(movieDetails?.runtime)}
               </p>
             </div>
           )}
@@ -146,8 +146,8 @@ export function Details({ id, contentType }: DetailsProps) {
         </p>
       </div>
 
-      <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
-        <div className="relative h-[500px] py-6 hidden lg:flex justify-between px-[1.95em]">
+      <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)] h-[100%]">
+        <div className="relative  py-6 hidden lg:flex justify-between items-center px-[1.95em]">
           <div className="w-[40%] h-full flex items-center justify-center">
             <div className="flex flex-col gap-4 px-4">
               {contentType === "movie" && (
@@ -189,7 +189,7 @@ export function Details({ id, contentType }: DetailsProps) {
                 {movieDetails?.runtime && (
                   <div>
                     <p className="text-white">
-                      Duração: {formatDuration(movieDetails?.runtime)}
+                      {formatDuration(movieDetails?.runtime)}
                     </p>
                   </div>
                 )}
@@ -243,9 +243,9 @@ export function Details({ id, contentType }: DetailsProps) {
         </div>
       </div>
 
-      <div className="my-8 px-[1.95rem] ">
+      <div className="my-8 pl-[1.95rem] md:px-[1.95rem] ">
         <Cast
-          contentType={contentType === "movie" ? "movie" : "serie"}
+          contentType={contentType === "movie" ? "movie" : "tv"}
           contentId={id}
         />
       </div>
@@ -253,12 +253,12 @@ export function Details({ id, contentType }: DetailsProps) {
       {movieImages.length === 0 ? (
         ""
       ) : (
-        <div className="my-8 ">
+        <div className="my-8">
           <ImageCarousel movieImages={movieImages} />
         </div>
       )}
 
-      <div className="my-8 px-[1.95rem]">
+      <div className="my-8 pl-[1.95rem] md:px-[1.95rem]">
         <Recommended
           contentType={contentType}
           id={id}
@@ -266,7 +266,7 @@ export function Details({ id, contentType }: DetailsProps) {
           title={movieDetails?.title ?? ""}
         />
       </div>
-      <div className="my-8 px-[1.95rem]">
+      <div className="my-8 pl-[1.95rem] md:px-[1.95rem]">
         <Similar
           contentType={contentType}
           id={id}
