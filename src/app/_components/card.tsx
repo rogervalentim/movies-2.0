@@ -26,7 +26,7 @@ export function Card({
 }: CardProps) {
   return (
     <>
-      <div className="rounded-[3px] relative h-[450px] cursor-pointer border border-[#333333] hover:border-white">
+      <div className="rounded-[3px] relative h-[500px] lg:h-[450px] cursor-pointer border border-[#333333] hover:border-white">
         <div>
           {poster_path ? (
             <>
@@ -39,12 +39,12 @@ export function Card({
                   height={0}
                   quality={100}
                   sizes="100vh"
-                  className="w-full h-[320px] brightness-75 hover:brightness-100 object-cover"
+                  className="w-full h-[350px] lg:h-[320px]  object-cover"
                 />
               </Link>
             </>
           ) : (
-            <div className="flex items-center h-[320px] justify-center">
+            <div className="flex items-center h-[350px] lg:h-[320px] justify-center">
               <Clapperboard className="size-16 fill-white text-transparent" />
             </div>
           )}

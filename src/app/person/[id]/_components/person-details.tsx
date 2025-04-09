@@ -171,7 +171,7 @@ export function PersonDetails({ id }: PersonDetailsProps) {
         </div>
       </div>
 
-      <div className="my-8 px-[1.95rem] ">
+      <div className="my-8 pl-[1.95rem] px-[1.95rem] ">
         <Credits name={personDetails?.name ?? ""} contentId={id} />
       </div>
     </section>

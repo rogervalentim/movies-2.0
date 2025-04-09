@@ -110,7 +110,7 @@ export function Details({ id, contentType }: DetailsProps) {
           {movieDetails?.number_of_seasons && (
             <div>
               <p className="text-white">
-                Número de temporadas: {movieDetails?.number_of_seasons}
+                Temporadas: {movieDetails?.number_of_seasons}
               </p>
             </div>
           )}
@@ -214,7 +214,7 @@ export function Details({ id, contentType }: DetailsProps) {
                 {movieDetails?.number_of_seasons && (
                   <div>
                     <p className="text-white">
-                      Número de temporadas: {movieDetails?.number_of_seasons}
+                      Temporadas: {movieDetails?.number_of_seasons}
                     </p>
                   </div>
                 )}

@@ -81,7 +81,7 @@ export default function ImageCarousel({ movieImages }: ImageCarouselProps) {
 
         {/* Modal para exibir imagem ampliada */}
         {selectedImage && (
-          <div className="fixed inset-0 bg-black bg-opacity-90 flex justify-center items-center z-50">
+          <div className="fixed inset-0 bg-black bg-opacity-90 flex justify-center items-center z-[10001]">
             <button
               onClick={closeImage}
               className="absolute top-5 right-5 text-white text-3xl"
