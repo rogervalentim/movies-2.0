@@ -51,7 +51,7 @@ export function Card({
               </div>
             </>
           ) : (
-            <div className="flex items-center h-full lg:h-[320px] justify-center">
+            <div className="flex items-center h-[320px] justify-center">
               <Clapperboard className="size-16 fill-white text-transparent" />
             </div>
           )}
