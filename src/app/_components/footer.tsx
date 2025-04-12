@@ -1,10 +1,8 @@
-import Link from "next/link";
-
 export function Footer() {
   return (
     <footer className="border-t border-[#333333]">
-      <div className="mx-auto w-full max-w-screen-xl">
-        <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4 justify-between">
+      <div className="px-[1.95rem]">
+        <div className="flex flex-wrap gap-8  py-6 lg:py-8  justify-between">
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
               Company

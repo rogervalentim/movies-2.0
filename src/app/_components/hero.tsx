@@ -87,10 +87,10 @@ export function Hero({ contentType, href }: HeroProps) {
         </p>
       </div>
       <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
-        <div className="relative h-[500px] py-6 hidden lg:flex justify-between px-[1.95em]">
+        <div className="relative h-full py-6 hidden lg:flex justify-between px-[1.95em]">
           <Link
             href={`${href}/${movie?.id}`}
-            className="relative w-full h-[100%] hidden lg:flex justify-between  gap-[1.95em] items-center"
+            className="relative w-full h-screen hidden lg:flex justify-between  gap-[1.95em] items-center"
           >
             <div className="w-[40%] h-full flex items-center justify-center">
               <div className="flex flex-col gap-4 px-4">
@@ -124,15 +124,15 @@ export function Hero({ contentType, href }: HeroProps) {
               </div>
             </div>
 
-            <div className="relative w-[60%] h-[500px]">
+            <div className="relative w-[60%] h-scren">
               <div
-                className="w-full h-full bg-cover bg-center rounded-lg border border-[#333333]"
+                className="w-full h-screen bg-cover bg-center rounded-lg border border-[#333333]"
                 style={{
                   backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movie?.backdrop_path})`
                 }}
               ></div>
               <div
-                className="absolute bottom-4 left-4 w-32 h-48 bg-cover rounded-lg border border-[#333333]"
+                className="absolute bottom-4 left-4 w-40 h-56 bg-cover rounded-lg border border-[#333333]"
                 style={{
                   backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie?.poster_path})`
                 }}

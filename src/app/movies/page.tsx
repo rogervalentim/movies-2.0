@@ -19,7 +19,7 @@ export default function MoviesPage() {
           Ver todos
         </a>
       </div>
-      <div className="pl-[1.95rem] md:px-[1.95em] mt-8">
+      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
         <MoviesTrending />
       </div>
 
@@ -33,7 +33,7 @@ export default function MoviesPage() {
         </a>
       </div>
 
-      <div className="pl-[1.95rem] md:px-[1.95em] mt-8">
+      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
         <MoviesTopRated />
       </div>
 
@@ -44,7 +44,7 @@ export default function MoviesPage() {
         </a>
       </div>
 
-      <div className="pl-[1.95rem] md:px-[1.95em] mt-8">
+      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
         <MoviesNowPlaying />
       </div>
 
@@ -55,7 +55,7 @@ export default function MoviesPage() {
         </a>
       </div>
 
-      <div className="pl-[1.95rem] md:px-[1.95em] mt-8">
+      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
         <MoviesPopular />
       </div>
 

@@ -16,7 +16,7 @@ export default function Home() {
           Ver todos
         </a>
       </div>
-      <div className="pl-[1.95rem] md:px-[1.95rem] mt-8">
+      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
         <MoviesTrending />
       </div>
 
@@ -31,7 +31,7 @@ export default function Home() {
         </a>
       </div>
 
-      <div className="pl-[1.95rem] md:px-[1.95rem] mt-8">
+      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
         <SeriesTrending />
       </div>
 

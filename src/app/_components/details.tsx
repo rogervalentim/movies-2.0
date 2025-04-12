@@ -11,6 +11,7 @@ import ImageCarousel from "./image-carousel";
 import { RenderStars } from "@/utils/render-stars";
 import { formatDate } from "@/_utils/format-date";
 import { formatDuration } from "@/_utils/format-duration";
+import { Collection } from "./collection";
 
 interface DetailsProps {
   id: number;
@@ -226,15 +227,15 @@ export function Details({ id, contentType }: DetailsProps) {
             </div>
           </div>
 
-          <div className="relative w-[60%] h-[500px]">
+          <div className="relative w-[60%] h-screen">
             <div
-              className="w-full h-full bg-cover bg-center rounded-lg border border-[#333333]"
+              className="w-full h-screen bg-cover bg-center rounded-lg border border-[#333333]"
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movieDetails?.backdrop_path})`
               }}
             ></div>
             <div
-              className="absolute bottom-4 left-4 w-32 h-48 bg-cover rounded-lg border border-[#333333]"
+              className="absolute bottom-4 left-4 w-40 h-56 bg-cover rounded-lg border border-[#333333]"
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movieDetails?.poster_path})`
               }}
@@ -243,7 +244,7 @@ export function Details({ id, contentType }: DetailsProps) {
         </div>
       </div>
 
-      <div className="my-8 pl-[1.95rem] md:px-[1.95rem] ">
+      <div className="my-8 pl-[1.95rem] px-[1.95rem]">
         <Cast
           contentType={contentType === "movie" ? "movie" : "tv"}
           contentId={id}
@@ -258,7 +259,7 @@ export function Details({ id, contentType }: DetailsProps) {
         </div>
       )}
 
-      <div className="my-8 pl-[1.95rem] md:px-[1.95rem]">
+      <div className="my-8 pl-[1.95rem] px-[1.95rem]">
         <Recommended
           contentType={contentType}
           id={id}
@@ -266,7 +267,7 @@ export function Details({ id, contentType }: DetailsProps) {
           title={movieDetails?.title ?? ""}
         />
       </div>
-      <div className="my-8 pl-[1.95rem] md:px-[1.95rem]">
+      <div className="my-8 pl-[1.95rem] px-[1.95rem]">
         <Similar
           contentType={contentType}
           id={id}
@@ -274,6 +275,20 @@ export function Details({ id, contentType }: DetailsProps) {
           title={movieDetails?.title ?? ""}
         />
       </div>
+
+      {movieDetails?.belongs_to_collection && (
+        <div className="pl-[1.95rem] px-[1.95rem] my-8">
+          <Collection
+            key={movieDetails?.belongs_to_collection?.id}
+            id={movieDetails?.belongs_to_collection?.id}
+            backdrop_path={
+              movieDetails?.belongs_to_collection?.backdrop_path || ""
+            }
+            poster_path={movieDetails?.belongs_to_collection?.poster_path || ""}
+            name={movieDetails?.belongs_to_collection?.name}
+          />
+        </div>
+      )}
     </section>
   );
 }

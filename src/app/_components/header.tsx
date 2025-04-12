@@ -21,10 +21,30 @@ export function Header() {
   return (
     <header className="sticky top-0 z-[1000] w-full border-b border-white  bg-background">
       <div className="flex justify-between py-4 items-center px-[1.95em] sticky top-0 z-50">
-        <div className="flex items-center justify-between gap-12">
-          <Link href="/">
-            <Clapperboard className="size-9 fill-white text-transparent" />
-          </Link>
+        <div className="flex w-full items-center justify-between gap-12">
+          <div className="lg:hidden">
+            {toggleMenu ? (
+              <button onClick={handleCloseToggleMenu}>
+                <X className="size-8 text-white/50 hover:text-white" />
+              </button>
+            ) : (
+              <button onClick={handleToggleMenu}>
+                <MenuIcon className="size-8 text-white/50 hover:text-white" />
+              </button>
+            )}
+          </div>
+
+          <div className="lg:hidden">
+            <Link href="/">
+              <Clapperboard className="size-9 fill-white text-transparent" />
+            </Link>
+          </div>
+
+          <div className="lg:hidden">
+            <button className="border-none">
+              <Search className="text-white/50 hover:text-white" />
+            </button>
+          </div>
           <ul className="hidden lg:flex items-center gap-9 ">
             {[
               { name: "Início", href: "/" },
@@ -55,18 +75,6 @@ export function Header() {
           </button>
           <Button viewDetails="Ver github" title="Ver github" isGithub={true} />
         </div>
-
-        <div className="lg:hidden">
-          {toggleMenu ? (
-            <button onClick={handleCloseToggleMenu}>
-              <X className="size-8 text-white/50 hover:text-white" />
-            </button>
-          ) : (
-            <button onClick={handleToggleMenu}>
-              <MenuIcon className="size-8 text-white/50 hover:text-white" />
-            </button>
-          )}
-        </div>
       </div>
 
       {toggleMenu && (
@@ -89,11 +97,7 @@ export function Header() {
               </Link>
             </li>
           ))}
-          <li>
-            <button className="border-none">
-              <Search className="text-black/50 hover:text-black" />
-            </button>
-          </li>
+
           <li>
             <Button
               viewDetails="Ver github"

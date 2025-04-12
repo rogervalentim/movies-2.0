@@ -51,7 +51,7 @@ export default function ImageCarousel({ movieImages }: ImageCarouselProps) {
         Galeria de Fotos
       </h2>
 
-      <div className="px-[1.95rem]">
+      <div className="pl-[1.95rem] px-[1.95rem]">
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={20}

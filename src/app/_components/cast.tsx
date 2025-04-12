@@ -62,7 +62,7 @@ export function Cast({ contentType, contentId }: CastProps) {
           {cast.map((item) => (
             <SwiperSlide className="w-full relative" key={`person- ${item.id}`}>
               <Link href={`/person/${item.id}`}>
-                <div className="rounded-[3px] relative h-[500px] lg:h-[450px] cursor-pointer border border-[#333333] hover:border-white">
+                <div className="rounded-[3px] relative h-[450px] cursor-pointer border border-[#333333] hover:border-white">
                   {item?.profile_path ? (
                     <Image
                       src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
@@ -72,21 +72,19 @@ export function Cast({ contentType, contentId }: CastProps) {
                       height={0}
                       quality={100}
                       sizes="100vh"
-                      className="w-full h-[350px] lg:h-[320px]  object-cover"
+                      className="w-full h-[320px]"
                     />
                   ) : (
-                    <div className="flex items-center h-[350px] lg:h-[320px] justify-center">
+                    <div className="flex items-center h-[320px] justify-center">
                       <Clapperboard className="size-16 fill-white text-transparent" />
                     </div>
                   )}
                   <div className="w-[220px] ">
                     <div className="   pt-6 pb-9 pl-8 pr-12 flex flex-col justify-center">
-                      <h2 className="font-normal text-lg text-white truncate">
+                      <h2 className="font-normal text-lg text-white ">
                         {item?.name}
                       </h2>
-                      <p className="text-white/50 truncate">
-                        {item?.character}
-                      </p>
+                      <p className="text-white/50 ">{item?.character}</p>
                     </div>
                   </div>
                 </div>

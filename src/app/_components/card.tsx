@@ -26,8 +26,8 @@ export function Card({
 }: CardProps) {
   return (
     <>
-      <div className="rounded-[3px] relative h-[500px] lg:h-[450px] cursor-pointer border border-[#333333] hover:border-white">
-        <div>
+      <div className="rounded-[3px] relative h-[450px] cursor-pointer border border-[#333333] hover:border-white">
+        <div className="relative">
           {poster_path ? (
             <>
               <Link href={`${href}/${id}`} title={name || title}>
@@ -39,31 +39,34 @@ export function Card({
                   height={0}
                   quality={100}
                   sizes="100vh"
-                  className="w-full h-[350px] lg:h-[320px]  object-cover"
+                  className="w-full h-[320px] object-cover"
                 />
               </Link>
+
+              <div
+                title="Média das avaliações dos usuários"
+                className="absolute top-2 right-2 flex items-center justify-center w-10 h-10 rounded-full bg-white text-black font-bold shadow-md"
+              >
+                {vote_average?.toFixed(1)}
+              </div>
             </>
           ) : (
-            <div className="flex items-center h-[350px] lg:h-[320px] justify-center">
+            <div className="flex items-center h-full lg:h-[320px] justify-center">
               <Clapperboard className="size-16 fill-white text-transparent" />
             </div>
           )}
         </div>
-        <div className="w-[220px]">
-          <div className="pt-6 pb-9 pl-8 pr-12 flex flex-col justify-center">
+
+        <div className="w-[220px] py-4">
+          <div className="pl-4 lg:pl-8 lg:pr-9 flex flex-col gap-1 justify-center">
             <Link href={`${href}/${id}`} title={name || title}>
-              <h2 className="font-normal text-lg text-white truncate">
+              <h2 className="font-semibold text-lg text-white lg:truncate">
                 {title || name}
               </h2>
             </Link>
             <p className="text-white/50 ">
               {formatDate(release_date || first_air_date || "")}
             </p>
-            <div className="flex">
-              <span className="text-white font-semibold">
-                {vote_average?.toFixed(1)}
-              </span>
-            </div>
           </div>
         </div>
       </div>
