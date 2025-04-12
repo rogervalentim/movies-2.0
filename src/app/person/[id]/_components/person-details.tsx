@@ -118,7 +118,7 @@ export function PersonDetails({ id }: PersonDetailsProps) {
       </div>
 
       <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
-        <div className="relative h-[500px] py-6 hidden lg:flex justify-between px-[1.95em]">
+        <div className="relative h-screen py-6 hidden lg:flex justify-between px-[1.95em]">
           <div className="w-[40%] h-full flex items-center justify-center">
             <div className="flex flex-col gap-4 px-4">
               <h1 className="text-white font-bold text-3xl md:text-4xl leading-tight">
@@ -136,16 +136,16 @@ export function PersonDetails({ id }: PersonDetailsProps) {
                   {personDetails?.known_for_department}
                 </p>
               </div>
-              <p className="text-slate-400 text-base  leading-relaxed">
+              <p className="text-slate-400 text-base leading-relaxed">
                 {personDetails?.biography ||
                   "Nenhuma descrição disponível para essa pessoa."}
               </p>
             </div>
           </div>
 
-          <div className="relative w-[60%] h-[500px]">
+          <div className="relative w-[60%] h-screen">
             <div
-              className="w-full h-full bg-cover bg-center rounded-lg border border-[#333333]"
+              className="w-full h-screen bg-cover bg-center rounded-lg border border-[#333333]"
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${latestWork?.backdrop_path})`
               }}
@@ -161,7 +161,7 @@ export function PersonDetails({ id }: PersonDetailsProps) {
               )}
             </div>
             <div
-              className="absolute bottom-4 left-4 w-32 h-48 bg-cover rounded-lg border border-[#333333]"
+              className="absolute bottom-4 left-4 w-40 h-56 bg-cover rounded-lg border border-[#333333]"
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/w500/${personDetails?.profile_path})`
               }}

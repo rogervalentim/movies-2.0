@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 
 export function Header() {
   const [toggleMenu, setToggleMenu] = useState(false);
-  const pathname = usePathname(); // Obtém a rota atual
+  const pathname = usePathname();
 
   function handleToggleMenu() {
     setToggleMenu(true);
@@ -19,33 +19,52 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-[1000] w-full border-b border-white  bg-background">
+    <header className="sticky top-0 z-[1000] w-full border-b border-[#333333]  bg-background">
       <div className="flex justify-between py-4 items-center px-[1.95em] sticky top-0 z-50">
         <div className="flex w-full items-center justify-between gap-12">
           <div className="lg:hidden">
             {toggleMenu ? (
               <button onClick={handleCloseToggleMenu}>
-                <X className="size-8 text-white/50 hover:text-white" />
+                <X className="size-8 text-white hover:text-white/50" />
               </button>
             ) : (
               <button onClick={handleToggleMenu}>
-                <MenuIcon className="size-8 text-white/50 hover:text-white" />
+                <MenuIcon className="size-8 text-white hover:text-white/50" />
               </button>
             )}
           </div>
 
           <div className="lg:hidden">
-            <Link href="/">
-              <Clapperboard className="size-9 fill-white text-transparent" />
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity"
+              title="CineVerse"
+            >
+              <Clapperboard className="w-8 h-8 text-white" />
+              <span className="text-2xl font-bold tracking-tight">
+                CineVerse
+              </span>
             </Link>
           </div>
 
           <div className="lg:hidden">
             <button className="border-none">
-              <Search className="text-white/50 hover:text-white" />
+              <Search className="text-white hover:text-white/50" />
             </button>
           </div>
           <ul className="hidden lg:flex items-center gap-9 ">
+            <li className="hidden lg:block">
+              <Link
+                href="/"
+                className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity"
+                title="CineVerse"
+              >
+                <Clapperboard className="w-8 h-8 text-white" />
+                <span className="text-2xl font-bold tracking-tight">
+                  CineVerse
+                </span>
+              </Link>
+            </li>
             {[
               { name: "Início", href: "/" },
               { name: "Filmes", href: "/movies" },
@@ -65,15 +84,16 @@ export function Header() {
               </li>
             ))}
           </ul>
-        </div>
-
-        <div className="backdrop-blur  supports-[backdrop-filter]:bg-background/60" />
-
-        <div className="hidden lg:flex items-center gap-9">
-          <button className="border-none">
-            <Search className="text-white/50" />
-          </button>
-          <Button viewDetails="Ver github" title="Ver github" isGithub={true} />
+          <div className="hidden lg:flex items-center gap-9">
+            <button className="border-none">
+              <Search className="text-white/50" />
+            </button>
+            <Button
+              viewDetails="Ver github"
+              title="Ver github"
+              isGithub={true}
+            />
+          </div>
         </div>
       </div>
 

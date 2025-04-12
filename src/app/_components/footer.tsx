@@ -1,107 +1,143 @@
+"use client";
+
+import { Clapperboard } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 export function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="border-t border-[#333333]">
       <div className="px-[1.95rem]">
-        <div className="flex flex-wrap gap-8  py-6 lg:py-8  justify-between">
+        <div className="flex flex-col lg:flex-row gap-8  py-6 lg:py-8  justify-between">
+          <div>
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity"
+              title="CineVerse"
+            >
+              <Clapperboard className="w-8 h-8 text-white" />
+              <span className="text-2xl font-bold tracking-tight">
+                CineVerse
+              </span>
+            </Link>
+          </div>
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              Company
+              Menu
+            </h2>
+            <ul className="text-gray-400 font-medium">
+              <li className="mb-4">
+                <Link
+                  href="/"
+                  className={`${pathname === "/" ? "text-white hover:underline" : ""}`}
+                  title="Inicio"
+                >
+                  Inicio
+                </Link>
+              </li>
+              <li className="mb-4">
+                <Link
+                  href="/movies"
+                  className={`${pathname === "/movies" ? "text-white hover:underline" : ""}`}
+                  title="Filmes"
+                >
+                  Filmes
+                </Link>
+              </li>
+              <li className="mb-4">
+                <Link
+                  href="/series"
+                  className={`${pathname === "/series" ? "text-white hover:underline" : ""}`}
+                >
+                  Séries
+                </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              Filmes
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a href="#" className=" hover:underline">
-                  About
+                <a
+                  href="#"
+                  className="hover:underline"
+                  title="Filmes em tendência"
+                >
+                  Filmes em tendência
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Careers
+                <a
+                  href="#"
+                  className="hover:underline"
+                  title="Filmes melhores avaliados"
+                >
+                  Filmes melhores avaliados
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Brand Center
+                <a
+                  href="#"
+                  className="hover:underline"
+                  title="Filmes em exibição"
+                >
+                  Filmes em exibição
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Blog
+                <a
+                  href="#"
+                  className="hover:underline"
+                  title="Filmes populares"
+                >
+                  Filmes populares
                 </a>
               </li>
             </ul>
           </div>
           <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              Help center
+              Séries
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Discord Server
+                <a
+                  href="#"
+                  className="hover:underline"
+                  title="Séries em tendência"
+                >
+                  Séries em tendência
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Twitter
+                <a
+                  href="#"
+                  className="hover:underline"
+                  title="Séries melhores avaliados"
+                >
+                  Séries melhores avaliados
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Facebook
+                <a
+                  href="#"
+                  className="hover:underline"
+                  title="Séries em exibição"
+                >
+                  Séries em exibição
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              Legal
-            </h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Privacy Policy
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Licensing
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Terms &amp; Conditions
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-              Download
-            </h2>
-            <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  iOS
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Android
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  Windows
-                </a>
-              </li>
-              <li className="mb-4">
-                <a href="#" className="hover:underline">
-                  MacOS
+                <a
+                  href="#"
+                  className="hover:underline"
+                  title="Séries populares"
+                >
+                  Séries populares
                 </a>
               </li>
             </ul>
@@ -109,7 +145,7 @@ export function Footer() {
         </div>
         <div className="px-4 py-6 bg-white md:flex md:items-center md:justify-between">
           <span className="text-sm text-black hover:text-gray-400 sm:text-center">
-            © 2025 <a href="https://flowbite.com/">Movies Roger</a>. All Rights
+            © 2025 <a href="https://flowbite.com/">CineVerse</a>. All Rights
             Reserved.
           </span>
           <div className="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
