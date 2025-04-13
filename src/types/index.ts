@@ -21,6 +21,8 @@ export interface MovieDetailsData {
   number_of_seasons: number;
   runtime: number;
   original_title: string;
+  media_type: string;
+  profile_path: string;
   budget: number;
   revenue: number;
   spoken_languages: [

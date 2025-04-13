@@ -8,17 +8,17 @@ export function Footer() {
   const pathname = usePathname();
 
   return (
-    <footer className="border-t border-[#333333]">
+    <footer className="border-t-2 border-[#333333]">
       <div className="px-[1.95rem]">
         <div className="flex flex-col lg:flex-row gap-8  py-6 lg:py-8  justify-between">
           <div>
             <Link
               href="/"
-              className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity"
+              className="flex justify-center items-center gap-2 text-white hover:opacity-80 transition-opacity"
               title="CineVerse"
             >
-              <Clapperboard className="w-8 h-8 text-white" />
-              <span className="text-2xl font-bold tracking-tight">
+              <Clapperboard className="size-6 text-white" />
+              <span className="text-xl font-bold tracking-tight">
                 CineVerse
               </span>
             </Link>

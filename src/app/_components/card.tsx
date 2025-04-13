@@ -12,6 +12,7 @@ interface CardProps {
   first_air_date?: string;
   href?: string;
   vote_average: number;
+  profile_path?: string;
 }
 
 export function Card({
@@ -22,24 +23,25 @@ export function Card({
   release_date,
   first_air_date,
   href,
-  vote_average
+  vote_average,
+  profile_path
 }: CardProps) {
   return (
     <>
-      <div className="rounded-[3px] relative h-[450px] cursor-pointer border border-[#333333] hover:border-white">
+      <div className="rounded-[3px] relative h-[500px] lg:h-[450px] cursor-pointer border border-[#333333] hover:border-white">
         <div className="relative">
           {poster_path ? (
             <>
               <Link href={`${href}/${id}`} title={name || title}>
                 <Image
-                  src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w500${poster_path || profile_path}`}
                   alt={(title || name) ?? ""}
                   title={name || title}
                   width={0}
                   height={0}
                   quality={100}
                   sizes="100vh"
-                  className="w-full h-[320px] object-cover"
+                  className="w-full h-[380px] lg:h-[320px] object-cover"
                 />
               </Link>
 
@@ -51,7 +53,7 @@ export function Card({
               </div>
             </>
           ) : (
-            <div className="flex items-center h-[320px] justify-center">
+            <div className="flex items-center h-[380px] lg:h-[320px] justify-center">
               <Clapperboard className="size-16 fill-white text-transparent" />
             </div>
           )}
