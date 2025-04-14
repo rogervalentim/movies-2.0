@@ -1,6 +1,6 @@
 "use client";
 
-import { Clapperboard, MenuIcon, Search, X } from "lucide-react";
+import { Clapperboard, MenuIcon, MoveRight, Search, X } from "lucide-react";
 import { Button } from "./button";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -183,6 +183,12 @@ export function Header() {
                 }
               }}
             />
+            <button>
+              <MoveRight
+                className="size-8 text-slate-400"
+                onClick={handleSearchSubmit}
+              />
+            </button>
           </div>
         </>
       )}
