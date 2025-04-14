@@ -124,9 +124,9 @@ export function Hero({ contentType, href }: HeroProps) {
               </div>
             </div>
 
-            <div className="relative w-[60%] h-scren">
+            <div className="relative w-[60%] h-[500px]">
               <div
-                className="w-full h-screen bg-cover bg-center rounded-lg border border-[#333333]"
+                className="w-full h-[500px] bg-cover bg-center rounded-lg border border-[#333333]"
                 style={{
                   backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movie?.backdrop_path})`
                 }}

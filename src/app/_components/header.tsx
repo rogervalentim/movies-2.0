@@ -80,9 +80,15 @@ export function Header() {
             </div>
 
             <div className="lg:hidden">
-              <button className="border-none" onClick={handleShowIpunt}>
-                <Search className="text-white hover:text-white/50" />
-              </button>
+              {showInput ? (
+                <button className="border-none" onClick={handleCloseInput}>
+                  <X className="text-white hover:text-white/50" />
+                </button>
+              ) : (
+                <button className="border-none" onClick={handleShowIpunt}>
+                  <Search className="text-white hover:text-white/50" />
+                </button>
+              )}
             </div>
             <ul className="hidden lg:flex items-center gap-9 ">
               <li className="hidden lg:block">
@@ -173,8 +179,8 @@ export function Header() {
           <div className="flex justify-center items-center h-52 z-[1000] px-[1.95em] bg-white fixed top-[72px] left-0 right-0">
             <input
               type="text"
-              placeholder="Buscar filmes, séries ou pessoas"
-              className="w-full pl-2 placeholder:text-3xl text-3xl border-b-[0.5px] focus:outline-none border-slate-400 text-black h-20"
+              placeholder="faça a sua busca"
+              className="w-full pl-2 placeholder:text-xl lg:placeholder:text-3xl text-3xl border-b-[0.5px] focus:outline-none border-slate-400 text-black h-20"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={(e) => {

@@ -42,7 +42,7 @@ export default function Search() {
         )}
         {data?.length === 0 && <p>Nenhum resultado encontrado.</p>}
 
-        <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-4">
+        <ul className="grid grid-cols-1 md:grid-cols-4  gap-4 mt-4">
           {data?.map((item) => (
             <li key={item.id}>
               <Card

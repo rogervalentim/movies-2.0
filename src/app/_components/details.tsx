@@ -227,9 +227,9 @@ export function Details({ id, contentType }: DetailsProps) {
             </div>
           </div>
 
-          <div className="relative w-[60%] h-screen">
+          <div className="relative w-[60%] h-[500px]">
             <div
-              className="w-full h-screen bg-cover bg-center rounded-lg border border-[#333333]"
+              className="w-full h-[500px] bg-cover bg-center rounded-lg border border-[#333333]"
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movieDetails?.backdrop_path})`
               }}
