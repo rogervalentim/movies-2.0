@@ -12,6 +12,7 @@ import { RenderStars } from "@/utils/render-stars";
 import { formatDate } from "@/_utils/format-date";
 import { formatDuration } from "@/_utils/format-duration";
 import { Collection } from "./collection";
+import { Seasons } from "./seasons";
 
 interface DetailsProps {
   id: number;
@@ -287,6 +288,12 @@ export function Details({ id, contentType }: DetailsProps) {
             poster_path={movieDetails?.belongs_to_collection?.poster_path || ""}
             name={movieDetails?.belongs_to_collection?.name}
           />
+        </div>
+      )}
+
+      {movieDetails?.number_of_seasons && (
+        <div className="pl-[1.95rem] px-[1.95rem] my-8">
+          <Seasons id={id} seasonNumber={1} />
         </div>
       )}
     </section>

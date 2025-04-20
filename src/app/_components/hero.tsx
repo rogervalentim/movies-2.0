@@ -85,13 +85,17 @@ export function Hero({ contentType, href }: HeroProps) {
         <p className="text-slate-400 text-base md:text-lg leading-relaxed">
           {movie?.overview || "Nenhuma descrição disponível para este filme."}
         </p>
+
+        <Link
+          href={`${href}/${movie?.id}`}
+          className="w-[200px] flex justify-center items-center border border-transparent h-[45px] rounded-[3px] bg-white text-black hover:bg-black hover:text-white hover:border-white font-semibold"
+        >
+          Ver Detalhes
+        </Link>
       </div>
       <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
         <div className="relative h-full py-6 hidden lg:flex justify-between px-[1.95em]">
-          <Link
-            href={`${href}/${movie?.id}`}
-            className="relative w-full h-screen hidden lg:flex justify-between  gap-[1.95em] items-center"
-          >
+          <div className="relative w-full h-[500px] hidden lg:flex justify-between  gap-[1.95em] items-center">
             <div className="w-[40%] h-full flex items-center justify-center">
               <div className="flex flex-col gap-4 px-4">
                 {contentType === "movie" && (
@@ -121,6 +125,13 @@ export function Hero({ contentType, href }: HeroProps) {
                   {movie?.overview ||
                     "Nenhuma descrição disponível para este filme."}
                 </p>
+
+                <Link
+                  href={`${href}/${movie?.id}`}
+                  className="w-[200px] flex justify-center items-center border border-transparent h-[45px] rounded-[3px] bg-white text-black hover:bg-black hover:text-white hover:border-white font-semibold"
+                >
+                  Ver Detalhes
+                </Link>
               </div>
             </div>
 
@@ -138,7 +149,7 @@ export function Hero({ contentType, href }: HeroProps) {
                 }}
               ></div>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </>

@@ -11,7 +11,7 @@ interface CardProps {
   release_date?: string;
   first_air_date?: string;
   href?: string;
-  vote_average: number;
+  vote_average?: number;
   profile_path?: string;
 }
 
@@ -59,14 +59,14 @@ export function Card({
           )}
         </div>
 
-        <div className="w-[220px] py-4">
+        <div className="w-full py-4 border-t border-[#333333]">
           <div className="pl-4 lg:pl-8 lg:pr-9 flex flex-col gap-1 justify-center">
             <Link href={`${href}/${id}`} title={name || title}>
               <h2 className="font-semibold text-lg text-white lg:truncate">
                 {title || name}
               </h2>
             </Link>
-            <p className="text-white/50 ">
+            <p className="text-white/50 text-base">
               {formatDate(release_date || first_air_date || "")}
             </p>
           </div>
