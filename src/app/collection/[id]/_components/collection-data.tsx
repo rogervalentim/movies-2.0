@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { apiKey } from "@/_utils/api-key";
 import Image from "next/image";
 import Link from "next/link";
+import { Clapperboard } from "lucide-react";
 
 interface CollectionData {
   overview: string;
@@ -45,22 +46,26 @@ export function CollectionData() {
         {collectionData.overview}
       </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6">
         {collectionData.parts.map((movie) => (
-          <Link
-            href={`/movie/${movie.id}`}
-            key={movie.id}
-            className="bg-transparent overflow-hidden"
-          >
-            <Image
-              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-              alt={movie.title}
-              width={0}
-              height={0}
-              quality={100}
-              sizes="100vh"
-              className="w-full h-[350px] rounded-[3px]"
-            />
+          <Link href={`/movie/${movie.id}`} key={movie.id}>
+            {movie?.poster_path ? (
+              <Image
+                src={`https://image.tmdb.org/t/p/w780${movie?.poster_path}`}
+                alt="image"
+                width={0}
+                height={0}
+                title={movie?.title}
+                key={movie?.id}
+                quality={100}
+                sizes="100vh"
+                className="w-full h-full object-cover border border-[#333333] rounded-[3px]"
+              />
+            ) : (
+              <div className="flex items-center w-full h-full border border-[#333333] rounded-[3px] justify-center">
+                <Clapperboard className="size-16 fill-white text-transparent" />
+              </div>
+            )}
           </Link>
         ))}
       </div>

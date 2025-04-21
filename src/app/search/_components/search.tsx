@@ -4,7 +4,9 @@ import { useSearchParams } from "next/navigation";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import { apiKey } from "@/_utils/api-key";
-import { Card } from "@/app/_components/card";
+import Image from "next/image";
+import Link from "next/link";
+import { Clapperboard } from "lucide-react";
 
 type MediaType = "movie" | "tv" | "person";
 
@@ -112,24 +114,38 @@ export default function Search() {
       <ul className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-4">
         {allResults.map((item) => (
           <li key={`${item.media_type}-${item.id}`}>
-            <Card
-              profile_path={item.profile_path}
-              poster_path={item?.poster_path ?? ""}
-              name={item.name}
-              title={item.title}
-              first_air_date={item.first_air_date}
-              release_date={item.release_date}
-              id={item.id}
+            <Link
               href={
                 item.media_type === "tv"
-                  ? `/serie`
+                  ? `/serie/${item.id}`
                   : item.media_type === "movie"
-                    ? `/movie`
+                    ? `/movie/${item.id}`
                     : item.media_type === "person"
-                      ? `/person`
+                      ? `/person/${item.id}`
                       : "/"
               }
-            />
+              title={item.name || item.title}
+            >
+              {item?.poster_path || item?.profile_path ? (
+                <Image
+                  src={`https://image.tmdb.org/t/p/w780${item?.poster_path || item?.profile_path}`}
+                  alt="image"
+                  width={0}
+                  height={0}
+                  key={item?.id}
+                  quality={100}
+                  sizes="100vh"
+                  className="w-full h-full bg-transparent object-cover border border-[#333333] rounded-[3px]"
+                />
+              ) : (
+                <div className="flex items-center w-full h-full border border-[#333333] bg-transparent relative rounded-[3px] justify-center">
+                  <div className="absolute top-4 right-4 bg-white text-black px-2.5 py-1.5 rounded-md text-base font-semibold max-w-[90%] hover:underline">
+                    {item?.name || item?.title}
+                  </div>
+                  <Clapperboard className="size-16 fill-white  text-transparent" />
+                </div>
+              )}
+            </Link>
           </li>
         ))}
       </ul>

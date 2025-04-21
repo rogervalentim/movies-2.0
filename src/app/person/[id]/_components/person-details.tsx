@@ -118,7 +118,7 @@ export function PersonDetails({ id }: PersonDetailsProps) {
       </div>
 
       <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
-        <div className="relative h-screen py-6 hidden lg:flex justify-between items-center px-[1.95em]">
+        <div className="relative h-[500px] py-6 hidden lg:flex justify-between items-center px-[1.95em]">
           <div className="w-[40%] h-full flex items-center justify-center">
             <div className="flex flex-col gap-4 px-4">
               <h1 className="text-white font-bold text-3xl md:text-4xl leading-tight">

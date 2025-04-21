@@ -40,21 +40,25 @@ export function Seasons({ id, seasonNumber }: SeasonProps) {
   }
 
   return (
-    <div className="flex border-[0.3px] border-[#333333]">
-      <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]  w-full lg:w-[50%] h-[500px] flex gap-5 px-10 items-start lg:border-r-[0.3px] lg:border-[#333333] justify-center  flex-col">
-        <h1 className="text-white text-5xl font-semibold">
-          {seasonData?.name}
-        </h1>
-        <p className="text-white/50 text-base">{seasonData?.overview}</p>
-        <Link
-          //   href={`/collection/${id}`}
-          href="/"
-          className="w-[200px] flex justify-center items-center border border-transparent h-[45px] rounded-[3px] bg-white text-black hover:bg-black hover:text-white hover:border-white font-semibold"
-        >
-          Ver Temporadas
-        </Link>
+    <div className="flex flex-col-reverse lg:flex-row border-[0.3px] border-[#333333]">
+      <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]  w-full lg:w-[50%] max-h-auto h-[500px]   items-start  border-r-[0.3px] border-[#333333]">
+        <div className="w-[90%] flex flex-wrap gap-5 flex-col justify-center items-start px-4 h-[500px]">
+          <h1 className="text-white text-3xl lg:text-5xl font-semibold ">
+            {seasonData?.name}
+          </h1>
+          <p className="text-white/50 text-sm lg:text-base break-words w-full overflow-hidden whitespace-normal">
+            {seasonData?.overview}
+          </p>
+
+          <Link
+            href={`/collection/${id}`}
+            className="w-[200px] flex justify-center items-center border border-transparent h-[45px] rounded-[3px] bg-white text-black hover:bg-black hover:text-white hover:border-white font-semibold"
+          >
+            Ver coleção
+          </Link>
+        </div>
       </div>
-      <div className=" w-full lg:w-[50%]  h-[500px] hidden lg:block">
+      <div className=" w-full lg:w-[50%]  h-[500px]">
         <Image
           src={`https://image.tmdb.org/t/p/w780${seasonData?.poster_path}`}
           alt={seasonData?.name ?? ""}
