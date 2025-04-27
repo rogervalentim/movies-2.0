@@ -118,9 +118,9 @@ export function PersonDetails({ id }: PersonDetailsProps) {
       </div>
 
       <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
-        <div className="relative h-[500px] py-6 hidden lg:flex justify-between items-center px-[1.95em]">
+        <div className="relative h-[500px] py-6 hidden lg:flex justify-between items-center container">
           <div className="w-[40%] h-full flex items-center justify-center">
-            <div className="flex flex-col gap-4 px-4">
+            <div className="flex flex-col gap-4">
               <h1 className="text-white font-bold text-3xl md:text-4xl leading-tight">
                 {personDetails?.name || "Título Indisponível"}
               </h1>
@@ -171,7 +171,7 @@ export function PersonDetails({ id }: PersonDetailsProps) {
         </div>
       </div>
 
-      <div className="my-8 pl-[1.95rem] px-[1.95rem] ">
+      <div className="py-8 container">
         <Credits name={personDetails?.name ?? ""} contentId={id} />
       </div>
     </section>

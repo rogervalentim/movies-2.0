@@ -13,19 +13,18 @@ export default function SeriesPage() {
 
       <Hero href="/serie" contentType="tv" />
 
-      <div className="px-[1.95em] mt-16 flex items-center justify-between">
+      <div className="container pt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Séries em tendência</p>
         <a href="#" className="text-white text-sm font-semibold uppercase">
           Ver todos
         </a>
       </div>
-      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
+      <div className="py-8  container">
         <SeriesTrending />
       </div>
 
-      <div className="px-[1.95em] mt-16 flex items-center justify-between">
+      <div className="container mt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">
-          {" "}
           Séries melhores avaliados
         </p>
         <a href="#" className="text-white text-sm font-semibold uppercase">
@@ -33,29 +32,29 @@ export default function SeriesPage() {
         </a>
       </div>
 
-      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
+      <div className="py-8  container">
         <SeriesTopRated />
       </div>
 
-      <div className="px-[1.95em] mt-16 flex items-center justify-between">
+      <div className="container mt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Séries em exibição</p>
         <a href="#" className="text-white text-sm font-semibold uppercase">
           Ver todos
         </a>
       </div>
 
-      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
+      <div className="py-8  container">
         <SeriesNowPlaying />
       </div>
 
-      <div className="px-[1.95em] mt-16 flex items-center justify-between">
+      <div className="container mt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Séries populares</p>
         <a href="#" className="text-white text-sm font-semibold uppercase">
           Ver todos
         </a>
       </div>
 
-      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
+      <div className="py-8  container">
         <SeriesPopular />
       </div>
 

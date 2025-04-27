@@ -4,11 +4,9 @@ import { apiKey } from "@/_utils/api-key";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Button } from "./button";
 
 interface FeatureDate {
   id: number;
-  backdrop_path: string;
   poster_path: string;
   contentType: string;
   title?: string;
@@ -58,31 +56,16 @@ export function Feature({ contentType, href }: FeatureProps) {
           title={movie?.title || movie?.name}
           key={movie?.overview}
         >
-          <div className="relative h-[450px] w-full">
+          <div className="h-[500px] w-full border border-[#333333] rounded-[3px] hover:border-white hover:brightness-75">
             <Image
               alt={movie?.title || movie?.name || ""}
-              src={`https://image.tmdb.org/t/p/w1280${movie?.backdrop_path}`}
-              width={1280}
-              height={780}
-              className="object-cover object-center w-full h-full border border-[#333333] hover:border-white rounded-[3px]"
+              width={0}
+              height={0}
+              src={`https://image.tmdb.org/t/p/w780${movie?.poster_path}`}
+              quality={100}
+              sizes="100vh"
+              className="w-full h-full"
             />
-            <div className="absolute inset-0 w-full h-[600px] object-cover filter blur-sm" />
-            <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-            <div className="absolute inset-0 flex flex-col gap-4 items-center px-10 justify-center">
-              <h1 className="text-4xl text-white font-bold">
-                {" "}
-                {movie?.title || movie?.name}
-              </h1>
-              <p className="line-clamp-3 text-lg  text-center text-white/80">
-                {" "}
-                {movie?.overview}
-              </p>
-
-              <Button
-                title="Ver detalhes"
-                viewDetails={`Ver detalhes ${movie?.title || movie?.name}`}
-              />
-            </div>
           </div>
         </Link>
       ))}

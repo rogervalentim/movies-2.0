@@ -34,7 +34,7 @@ export function Hero({ contentType, href }: HeroProps) {
 
   return (
     <>
-      <div className="lg:hidden flex flex-col  gap-4 px-[1.95em] py-6 bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
+      <div className="lg:hidden flex flex-col  gap-4 container py-8 bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
         <Image
           src={`https://image.tmdb.org/t/p/w780${movie?.poster_path}`}
           alt="image"
@@ -62,7 +62,9 @@ export function Hero({ contentType, href }: HeroProps) {
         </h1>
 
         <div className="flex items-center gap-3">
-          <span className="text-white">{movie?.vote_average?.toFixed(1)}</span>
+          <span className=" flex items-center justify-center w-10 h-10 rounded-full bg-white text-black font-bold shadow-md">
+            {movie?.vote_average?.toFixed(1)}
+          </span>
           <span className="flex">{RenderStars(movie?.vote_average)}</span>
           <div>
             {movie?.imdb_id && (
@@ -94,10 +96,10 @@ export function Hero({ contentType, href }: HeroProps) {
         </Link>
       </div>
       <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
-        <div className="relative h-full py-6 hidden lg:flex justify-between px-[1.95em]">
+        <div className="relative h-full  hidden lg:flex justify-between container py-6">
           <div className="relative w-full h-[500px] hidden lg:flex justify-between  gap-[1.95em] items-center">
             <div className="w-[40%] h-full flex items-center justify-center">
-              <div className="flex flex-col gap-4 px-4">
+              <div className="flex flex-col gap-4">
                 {contentType === "movie" && (
                   <p className="text-slate-400 text-sm  leading-relaxed">
                     {formatDate(movie?.release_date ?? "")}

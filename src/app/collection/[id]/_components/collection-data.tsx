@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Clapperboard } from "lucide-react";
 
 interface CollectionData {
+  title: string;
   overview: string;
   parts: {
     id: number;
@@ -40,7 +41,7 @@ export function CollectionData() {
     return <p className="text-white text-center mt-10">Carregando...</p>;
 
   return (
-    <div className="text-white px-4 py-8 max-w-7xl mx-auto">
+    <div className="text-white container py-8">
       <h2 className="text-3xl font-bold mb-4">Coleção</h2>
       <p className="mb-8 text-gray-300 text-lg leading-relaxed">
         {collectionData.overview}

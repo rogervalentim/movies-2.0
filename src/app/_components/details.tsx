@@ -64,94 +64,95 @@ export function Details({ id, contentType }: DetailsProps) {
 
   return (
     <section>
-      <div className="lg:hidden flex flex-col  gap-4 px-[1.95em] py-6 bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
-        <Image
-          src={`https://image.tmdb.org/t/p/w780${movieDetails?.poster_path}`}
-          alt="image"
-          width={0}
-          height={0}
-          key={movieDetails?.id}
-          quality={100}
-          sizes="100vh"
-          className="w-full h-full object-cover border border-[#333333] rounded-[3px]"
-        />
+      <div className="lg:hidden  bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
+        <div className="container py-6 flex flex-col  gap-4 ">
+          <Image
+            src={`https://image.tmdb.org/t/p/w780${movieDetails?.poster_path}`}
+            alt="image"
+            width={0}
+            height={0}
+            key={movieDetails?.id}
+            quality={100}
+            sizes="100vh"
+            className="w-full h-full object-cover border border-[#333333] rounded-[3px]"
+          />
 
-        {contentType === "movie" && (
-          <p className="text-slate-400 text-sm  leading-relaxed">
-            {formatDate(movieDetails?.release_date ?? "")}
-          </p>
-        )}
-        {contentType === "tv" && (
-          <p className="text-slate-400 text-sm  leading-relaxed">
-            {formatDate(movieDetails?.first_air_date ?? "")}
-          </p>
-        )}
-
-        <h1 className="text-white font-bold text-xl md:text-3xl leading-tight">
-          {movieDetails?.title || movieDetails?.name || "Título Indisponível"}
-        </h1>
-
-        <div className="flex flex-wrap gap-1">
-          {movieDetails?.genres.map((genre) => (
-            <span
-              key={genre.id}
-              className=" text-slate-400  text-xs w-fit font-medium me-2 px-2.5 py-0.5 max-w-full rounded-full border-[0.3px] border-[#333333]"
-            >
-              {genre.name}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-3">
-          <span className="text-white">
-            {movieDetails?.vote_average?.toFixed(1)}
-          </span>
-          <span className="flex">
-            {RenderStars(movieDetails?.vote_average)}
-          </span>
-          {movieDetails?.number_of_seasons && (
-            <div>
-              <p className="text-white">
-                Temporadas: {movieDetails?.number_of_seasons}
-              </p>
-            </div>
+          {contentType === "movie" && (
+            <p className="text-slate-400 text-sm  leading-relaxed">
+              {formatDate(movieDetails?.release_date ?? "")}
+            </p>
+          )}
+          {contentType === "tv" && (
+            <p className="text-slate-400 text-sm  leading-relaxed">
+              {formatDate(movieDetails?.first_air_date ?? "")}
+            </p>
           )}
 
-          {movieDetails?.runtime && (
-            <div>
-              <p className="text-white">
-                {formatDuration(movieDetails?.runtime)}
-              </p>
-            </div>
-          )}
-          <div>
-            {movieDetails?.imdb_id && (
-              <a
-                href={`https://www.imdb.com/title/${movieDetails?.imdb_id}/`}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={`Veja  ${movieDetails?.name || movieDetails?.title} no IMDB`}
+          <h1 className="text-white font-bold text-xl md:text-3xl leading-tight">
+            {movieDetails?.title || movieDetails?.name || "Título Indisponível"}
+          </h1>
+
+          <div className="flex flex-wrap gap-1">
+            {movieDetails?.genres.map((genre) => (
+              <span
+                key={genre.id}
+                className=" text-slate-400  text-xs w-fit font-medium me-2 px-2.5 py-0.5 max-w-full rounded-full border-[0.3px] border-[#333333]"
               >
-                <Image
-                  src="/imdb-logo-2016-1.svg"
-                  width={50}
-                  height={50}
-                  alt="Logo do imdb"
-                />
-              </a>
-            )}
+                {genre.name}
+              </span>
+            ))}
           </div>
-        </div>
-        <p className="text-slate-400 text-base md:text-lg leading-relaxed">
-          {movieDetails?.overview ||
-            "Nenhuma descrição disponível para este filme."}
-        </p>
-      </div>
 
+          <div className="flex items-center gap-3">
+            <span className=" flex items-center justify-center w-10 h-10 rounded-full bg-white text-black font-bold shadow-md">
+              {movieDetails?.vote_average?.toFixed(1)}
+            </span>
+            <span className="flex">
+              {RenderStars(movieDetails?.vote_average)}
+            </span>
+            {movieDetails?.number_of_seasons && (
+              <div>
+                <p className="text-white">
+                  Temporadas: {movieDetails?.number_of_seasons}
+                </p>
+              </div>
+            )}
+
+            {movieDetails?.runtime && (
+              <div>
+                <p className="text-white">
+                  {formatDuration(movieDetails?.runtime)}
+                </p>
+              </div>
+            )}
+            <div>
+              {movieDetails?.imdb_id && (
+                <a
+                  href={`https://www.imdb.com/title/${movieDetails?.imdb_id}/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={`Veja  ${movieDetails?.name || movieDetails?.title} no IMDB`}
+                >
+                  <Image
+                    src="/imdb-logo-2016-1.svg"
+                    width={50}
+                    height={50}
+                    alt="Logo do imdb"
+                  />
+                </a>
+              )}
+            </div>
+          </div>
+          <p className="text-slate-400 text-base md:text-lg leading-relaxed">
+            {movieDetails?.overview ||
+              "Nenhuma descrição disponível para este filme."}
+          </p>
+        </div>
+      </div>
       <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)] h-[100%]">
-        <div className="relative  py-6 hidden lg:flex justify-between items-center px-[1.95em]">
+        <div className="relative  py-6 hidden lg:flex justify-between items-center container">
           <div className="w-[40%] h-full flex items-center justify-center">
-            <div className="flex flex-col gap-4 px-4">
+            <div className="flex flex-col gap-4 ">
               {contentType === "movie" && (
                 <p className="text-slate-400 text-sm  leading-relaxed">
                   {formatDate(movieDetails?.release_date ?? "")}
@@ -181,7 +182,7 @@ export function Details({ id, contentType }: DetailsProps) {
               </div>
 
               <div className="flex items-center gap-3">
-                <span className="text-white">
+                <span className=" flex items-center justify-center w-10 h-10 rounded-full bg-white text-black font-bold shadow-md">
                   {movieDetails?.vote_average?.toFixed(1)}
                 </span>
                 <span className="flex">
@@ -245,7 +246,7 @@ export function Details({ id, contentType }: DetailsProps) {
         </div>
       </div>
 
-      <div className="my-8 pl-[1.95rem] px-[1.95rem]">
+      <div className="py-8  container">
         <Cast
           contentType={contentType === "movie" ? "movie" : "tv"}
           contentId={id}
@@ -255,12 +256,12 @@ export function Details({ id, contentType }: DetailsProps) {
       {movieImages.length === 0 ? (
         ""
       ) : (
-        <div className="my-8">
+        <div>
           <ImageCarousel movieImages={movieImages} />
         </div>
       )}
 
-      <div className="my-8 pl-[1.95rem] px-[1.95rem]">
+      <div className="py-8  container">
         <Recommended
           contentType={contentType}
           id={id}
@@ -268,7 +269,7 @@ export function Details({ id, contentType }: DetailsProps) {
           title={movieDetails?.title ?? ""}
         />
       </div>
-      <div className="my-8 pl-[1.95rem] px-[1.95rem]">
+      <div className="py-8  container">
         <Similar
           contentType={contentType}
           id={id}
@@ -278,7 +279,7 @@ export function Details({ id, contentType }: DetailsProps) {
       </div>
 
       {movieDetails?.belongs_to_collection && (
-        <div className="pl-[1.95rem] px-[1.95rem] my-8">
+        <div className="py-8  container">
           <Collection
             key={movieDetails?.belongs_to_collection?.id}
             id={movieDetails?.belongs_to_collection?.id}
@@ -292,7 +293,7 @@ export function Details({ id, contentType }: DetailsProps) {
       )}
 
       {movieDetails?.number_of_seasons && (
-        <div className="pl-[1.95rem] px-[1.95rem] my-8">
+        <div className="py-8  container">
           <Seasons id={id} seasonNumber={1} />
         </div>
       )}

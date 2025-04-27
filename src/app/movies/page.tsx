@@ -13,17 +13,17 @@ export default function MoviesPage() {
 
       <Hero href="movie" contentType="movie" />
 
-      <div className="px-[1.95em] mt-16 flex items-center justify-between">
+      <div className="container pt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Filmes em tendência</p>
         <a href="#" className="text-white text-sm font-semibold uppercase">
           Ver todos
         </a>
       </div>
-      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
+      <div className="container py-8">
         <MoviesTrending />
       </div>
 
-      <div className="px-[1.95em] mt-16 flex items-center justify-between">
+      <div className="container mt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">
           {" "}
           Filmes melhores avaliados
@@ -33,29 +33,29 @@ export default function MoviesPage() {
         </a>
       </div>
 
-      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
+      <div className="py-8  container">
         <MoviesTopRated />
       </div>
 
-      <div className="px-[1.95em] mt-16 flex items-center justify-between">
+      <div className="container mt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Filmes em exibição</p>
         <a href="#" className="text-white text-sm font-semibold uppercase">
           Ver todos
         </a>
       </div>
 
-      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
+      <div className="py-8  container">
         <MoviesNowPlaying />
       </div>
 
-      <div className="px-[1.95em] mt-16 flex items-center justify-between">
+      <div className="container mt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Filmes populares</p>
         <a href="#" className="text-white text-sm font-semibold uppercase">
           Ver todos
         </a>
       </div>
 
-      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
+      <div className="py-8  container">
         <MoviesPopular />
       </div>
 

@@ -10,32 +10,32 @@ export default function Home() {
     <>
       <Header />
       <HeroHome href="/movie" contentType="movie" />
-      <div className="px-[1.95em] mt-16 flex items-center justify-between">
+      <div className="  container pt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Filmes em tendência</p>
         <a href="#" className="text-white text-sm font-semibold uppercase">
           Ver todos
         </a>
       </div>
-      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
+      <div className="py-8  container">
         <MoviesTrending />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2  mx-[1.95rem] gap-5 mt-[2.875rem]">
+      <div className="grid grid-cols-1 lg:grid-cols-2  py-8  container gap-5 mt-[2.875rem]">
         <Feature href="/movie" contentType="movie" />
       </div>
 
-      <div className="px-[1.95em] mt-16 flex items-center justify-between">
+      <div className="py-8  container flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Séries em tendência</p>
         <a href="#" className="text-white text-sm font-semibold uppercase">
           Ver todos
         </a>
       </div>
 
-      <div className="pl-[1.95rem] px-[1.95rem] mt-8">
+      <div className="py-8  container mt-8">
         <SeriesTrending />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2  mx-[1.95rem] gap-5 mt-[2.875rem]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 container gap-5 mt-[2.875rem]">
         <Feature href="/serie" contentType="tv" />
       </div>
 

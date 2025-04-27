@@ -35,7 +35,7 @@ export default function ImageCarousel({ movieImages }: ImageCarouselProps) {
         Galeria de Fotos
       </h2>
 
-      <div className="pl-[1.95rem] px-[1.95rem]">
+      <div className="py-8  container">
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={20}
@@ -56,7 +56,7 @@ export default function ImageCarousel({ movieImages }: ImageCarouselProps) {
                 width={320}
                 height={200}
                 quality={100}
-                className="w-[full] h-[200px] object-cover rounded-[3px] border border-[#333] shadow-md transition-transform duration-300 hover:scale-105 cursor-pointer"
+                className="w-full h-[200px] object-cover rounded-[3px] border border-[#333] shadow-md transition-transform duration-300 hover:scale-105 cursor-pointer"
                 onClick={() => openImage(index)}
               />
             </SwiperSlide>

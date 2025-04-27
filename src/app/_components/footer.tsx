@@ -9,7 +9,7 @@ export function Footer() {
 
   return (
     <footer className="border-t-2 border-[#333333]">
-      <div className="px-[1.95rem]">
+      <div className="container">
         <div className="flex flex-col lg:flex-row gap-8  py-6 lg:py-8  justify-between">
           <div>
             <Link

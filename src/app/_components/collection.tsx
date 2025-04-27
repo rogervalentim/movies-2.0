@@ -49,7 +49,7 @@ export function Collection({ id, name, poster_path }: CollectionProps) {
   return (
     <div className="flex flex-col-reverse lg:flex-row border-[0.3px] border-[#333333]">
       <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]  w-full lg:w-[50%] max-h-auto h-[500px]   items-start  border-r-[0.3px] border-[#333333]">
-        <div className="w-[90%] flex flex-wrap gap-5 flex-col justify-center items-start px-4 h-[500px]">
+        <div className="w-[90%] flex flex-wrap gap-5 flex-col justify-center items-start container h-[500px]">
           <h1 className="text-white text-3xl lg:text-5xl font-semibold ">
             {name}
           </h1>

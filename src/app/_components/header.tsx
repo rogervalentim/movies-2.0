@@ -52,7 +52,7 @@ export function Header() {
   return (
     <>
       <header className="sticky top-0 z-[1000] w-full border-b-2 border-[#333333]  bg-background">
-        <div className="flex justify-between py-4 items-center px-[1.95em] sticky top-0 z-50">
+        <div className="flex justify-between py-4 items-center container sticky top-0 z-50">
           <div className="flex w-full items-center justify-between gap-12">
             <div className="lg:hidden">
               {toggleMenu ? (
@@ -142,7 +142,7 @@ export function Header() {
         </div>
 
         {toggleMenu && (
-          <ul className="flex flex-col  h-screen items-center justify-center z-50 bg-white px-[1.95em] lg:hidden gap-3">
+          <ul className="flex flex-col  h-screen items-center justify-center z-50 bg-white container lg:hidden gap-3">
             {[
               { name: "Início", href: "/" },
               { name: "Filmes", href: "/movies" },
@@ -176,7 +176,7 @@ export function Header() {
       {showInput && (
         <>
           <div className="fixed h-screen inset-0 bg-black/50 " />
-          <div className="flex justify-center items-center h-52 z-[1000] px-[1.95em] bg-white fixed top-[72px] left-0 right-0">
+          <div className="flex justify-center items-center h-52 z-[1000] container bg-white fixed top-[72px] left-0 right-0">
             <input
               type="text"
               placeholder="faça a sua busca"

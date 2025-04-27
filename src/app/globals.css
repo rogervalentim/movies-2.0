@@ -20,6 +20,30 @@ body {
   background: var(--background);
 }
 
+@media (max-width: 576px) {
+  .container {
+    max-width: 90%;
+  }
+}
+.container {
+  margin: 0 auto;
+  width: 90%;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 90%;
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 90%;
+    max-width: 1280px;
+  }
+}
+
 .swiper .swiper-button-prev,
 .swiper .swiper-button-next {
   background-color: white;
