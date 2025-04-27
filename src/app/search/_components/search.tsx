@@ -100,7 +100,7 @@ export default function Search() {
   const allResults = data?.pages.flatMap((page) => page.results) || [];
 
   return (
-    <div className="p-4 text-white">
+    <div className="container pt-4 text-white">
       <h1 className="text-2xl mb-4">
         Resultados para: <strong>{query}</strong>
       </h1>

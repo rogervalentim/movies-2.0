@@ -142,7 +142,7 @@ export function Header() {
         </div>
 
         {toggleMenu && (
-          <ul className="flex flex-col  h-screen items-center justify-center z-50 bg-white container lg:hidden gap-3">
+          <ul className="flex flex-col  h-screen items-center justify-center z-50 bg-white lg:hidden gap-3">
             {[
               { name: "Início", href: "/" },
               { name: "Filmes", href: "/movies" },
@@ -176,25 +176,27 @@ export function Header() {
       {showInput && (
         <>
           <div className="fixed h-screen inset-0 bg-black/50 " />
-          <div className="flex justify-center items-center h-52 z-[1000] container bg-white fixed top-[72px] left-0 right-0">
-            <input
-              type="text"
-              placeholder="faça a sua busca"
-              className="w-full pl-2 placeholder:text-xl lg:placeholder:text-3xl text-3xl border-b-[0.5px] focus:outline-none border-slate-400 text-black h-20"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleSearchSubmit();
-                }
-              }}
-            />
-            <button>
-              <MoveRight
-                className="size-8 text-slate-400"
-                onClick={handleSearchSubmit}
+          <div className="flex justify-center items-center h-52 z-[1000] px-[1.95rem] bg-white fixed top-[72px] left-0 right-0">
+            <div className="container">
+              <input
+                type="text"
+                placeholder="faça a sua busca"
+                className="w-full pl-2 placeholder:text-xl lg:placeholder:text-3xl text-3xl border-b-[0.5px] focus:outline-none border-slate-400 text-black h-20"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearchSubmit();
+                  }
+                }}
               />
-            </button>
+              <button>
+                <MoveRight
+                  className="size-8 text-slate-400"
+                  onClick={handleSearchSubmit}
+                />
+              </button>
+            </div>
           </div>
         </>
       )}

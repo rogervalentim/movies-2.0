@@ -79,12 +79,15 @@ export function Cast({ contentType, contentId }: CastProps) {
                       <Clapperboard className="size-16 fill-white text-transparent" />
                     </div>
                   )}
-                  <div className="w-[220px] ">
-                    <div className="   pt-6 pb-9 pl-8 pr-12 flex flex-col justify-center">
-                      <h2 className="font-normal text-lg text-white ">
-                        {item?.name}
+
+                  <div className="w-full py-4 border-t border-[#333333]">
+                    <div className="pl-4 lg:pl-8 lg:pr-9 flex flex-col gap-1 justify-center">
+                      <h2 className="font-semibold text-lg text-white lg:truncate">
+                        {item?.name}{" "}
                       </h2>
-                      <p className="text-white/50 ">{item?.character}</p>
+                      <p className="text-white/50 text-base">
+                        <p className="text-white/50 ">{item?.character}</p>
+                      </p>
                     </div>
                   </div>
                 </div>
