@@ -17,6 +17,7 @@
     "node-vibrant": "^4.0.3",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-dom": "19.0.0-rc-69d4b800-20241021",
+    "react-loading-skeleton": "^3.5.0",
     "swiper": "^11.2.6"
   },
   "devDependencies": {

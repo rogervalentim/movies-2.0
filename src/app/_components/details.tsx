@@ -71,7 +71,6 @@ export function Details({ id, contentType }: DetailsProps) {
             alt="image"
             width={0}
             height={0}
-            key={movieDetails?.id}
             quality={100}
             sizes="100vh"
             className="w-full h-full object-cover border border-[#333333] rounded-[3px]"

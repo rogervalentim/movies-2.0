@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { apiKey } from "@/_utils/api-key";
 import Image from "next/image";
 import Link from "next/link";
-import { Clapperboard } from "lucide-react";
+import { Clapperboard, UserRound } from "lucide-react";
 
 type MediaType = "movie" | "tv" | "person";
 
@@ -54,6 +54,9 @@ async function fetchSearchResults({
     nextPage: data.page < data.total_pages ? data.page + 1 : null
   };
 }
+
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css"; // Importação de estilo
 
 export default function Search() {
   const searchParams = useSearchParams();
@@ -105,7 +108,17 @@ export default function Search() {
         Resultados para: <strong>{query}</strong>
       </h1>
 
-      {isLoading && <p className="text-white/60">Carregando resultados...</p>}
+      {isLoading && (
+        <ul className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-4">
+          {Array(5) // Aqui você pode alterar o número de skeletons a serem exibidos
+            .fill(0)
+            .map((_, index) => (
+              <li key={index}>
+                <Skeleton height={300} />
+              </li>
+            ))}
+        </ul>
+      )}
       {isError && <p className="text-slate-400">Erro ao buscar resultados.</p>}
       {allResults.length === 0 && !isLoading && (
         <p>Nenhum resultado encontrado.</p>
@@ -126,25 +139,29 @@ export default function Search() {
               }
               title={item.name || item.title}
             >
-              {item?.poster_path || item?.profile_path ? (
-                <Image
-                  src={`https://image.tmdb.org/t/p/w780${item?.poster_path || item?.profile_path}`}
-                  alt="image"
-                  width={0}
-                  height={0}
-                  key={item?.id}
-                  quality={100}
-                  sizes="100vh"
-                  className="w-full h-full bg-transparent object-cover border border-[#333333] rounded-[3px]"
-                />
-              ) : (
-                <div className="flex items-center w-full h-full border border-[#333333] bg-transparent relative rounded-[3px] justify-center">
-                  <div className="absolute top-4 right-4 bg-white text-black px-2.5 py-1.5 rounded-md text-base font-semibold max-w-[90%] hover:underline">
-                    {item?.name || item?.title}
+              <div className="w-full aspect-[2/3] relative border border-[#333333] rounded-[3px] bg-black">
+                {item?.poster_path || item?.profile_path ? (
+                  <Image
+                    src={`https://image.tmdb.org/t/p/w780${item.poster_path || item.profile_path}`}
+                    alt="image"
+                    fill
+                    quality={100}
+                    sizes="100vw"
+                    className="object-cover rounded-[3px]"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center w-full h-full relative rounded-[3px]">
+                    <div className="absolute top-2 right-2 bg-white text-black px-2.5 py-1.5 rounded-md text-sm font-semibold max-w-[90%] text-ellipsis overflow-hidden whitespace-nowrap">
+                      {item?.name || item?.title}
+                    </div>
+                    {item?.poster_path ? (
+                      <Clapperboard className="size-12 sm:size-20 fill-white text-transparent" />
+                    ) : (
+                      <UserRound className="size-12 sm:size-20 fill-white text-transparent" />
+                    )}
                   </div>
-                  <Clapperboard className="size-16 fill-white  text-transparent" />
-                </div>
-              )}
+                )}
+              </div>
             </Link>
           </li>
         ))}

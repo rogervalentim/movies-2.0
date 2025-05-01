@@ -86,7 +86,7 @@ export function Cast({ contentType, contentId }: CastProps) {
                         {item?.name}{" "}
                       </h2>
                       <p className="text-white/50 text-base">
-                        <p className="text-white/50 ">{item?.character}</p>
+                        {item?.character}
                       </p>
                     </div>
                   </div>

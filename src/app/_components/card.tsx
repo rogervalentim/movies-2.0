@@ -41,7 +41,7 @@ export function Card({
                   height={0}
                   quality={100}
                   sizes="100vh"
-                  className="w-full h-[380px] lg:h-[320px] object-cover"
+                  className="w-full h-[380px] lg:h-[320px]"
                 />
               </Link>
 
