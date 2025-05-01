@@ -5,6 +5,7 @@ import { SeriesNowPlaying } from "./_components/series-now-playing";
 import { SeriesTopRated } from "./_components/series-top-rated";
 import { Footer } from "../_components/footer";
 import { SeriesPopular } from "./_components/series-popular";
+import Link from "next/link";
 
 export default function SeriesPage() {
   return (
@@ -15,9 +16,13 @@ export default function SeriesPage() {
 
       <div className="container pt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Séries em tendência</p>
-        <a href="#" className="text-white text-sm font-semibold uppercase">
+        <Link
+          href="/series-em-tendencia"
+          title="Clique aqui e veja todos os séries em tendência"
+          className="text-white text-sm font-semibold uppercase hover:underline"
+        >
           Ver todos
-        </a>
+        </Link>
       </div>
       <div className="py-8  container">
         <SeriesTrending />
@@ -27,9 +32,13 @@ export default function SeriesPage() {
         <p className="text-lg text-white font-semibold">
           Séries melhores avaliados
         </p>
-        <a href="#" className="text-white text-sm font-semibold uppercase">
+        <Link
+          href="/series-melhores-avaliadas"
+          title="Clique aqui e veja todos os séries melhores avaliadas"
+          className="text-white text-sm font-semibold uppercase hover:underline"
+        >
           Ver todos
-        </a>
+        </Link>
       </div>
 
       <div className="py-8  container">
@@ -38,9 +47,13 @@ export default function SeriesPage() {
 
       <div className="container mt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Séries em exibição</p>
-        <a href="#" className="text-white text-sm font-semibold uppercase">
+        <Link
+          href="/filmes-em-exibicao"
+          title="Clique aqui e veja todos os filmes em exibição"
+          className="text-white text-sm font-semibold uppercase hover:underline"
+        >
           Ver todos
-        </a>
+        </Link>
       </div>
 
       <div className="py-8  container">
@@ -49,9 +62,13 @@ export default function SeriesPage() {
 
       <div className="container mt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Séries populares</p>
-        <a href="#" className="text-white text-sm font-semibold uppercase">
+        <Link
+          href="/series-populares"
+          title="Clique aqui e veja todos os séries populares"
+          className="text-white text-sm font-semibold uppercase hover:underline"
+        >
           Ver todos
-        </a>
+        </Link>
       </div>
 
       <div className="py-8  container">

@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { apiKey } from "@/_utils/api-key";
 import Image from "next/image";
 import Link from "next/link";
-import { Clapperboard, UserRound } from "lucide-react";
+import { Clapperboard } from "lucide-react";
 
 type MediaType = "movie" | "tv" | "person";
 
@@ -37,7 +37,7 @@ async function fetchSearchResults({
   pageParam = 1,
   query = ""
 }: {
-  pageParam?: number;
+  pageParam?: number | undefined;
   query: string;
 }): Promise<PaginatedSearchResponse> {
   const res = await fetch(
@@ -154,11 +154,8 @@ export default function Search() {
                     <div className="absolute top-2 right-2 bg-white text-black px-2.5 py-1.5 rounded-md text-sm font-semibold max-w-[90%] text-ellipsis overflow-hidden whitespace-nowrap">
                       {item?.name || item?.title}
                     </div>
-                    {item?.poster_path ? (
-                      <Clapperboard className="size-12 sm:size-20 fill-white text-transparent" />
-                    ) : (
-                      <UserRound className="size-12 sm:size-20 fill-white text-transparent" />
-                    )}
+
+                    <Clapperboard className="size-12 sm:size-20 fill-white text-transparent" />
                   </div>
                 )}
               </div>
