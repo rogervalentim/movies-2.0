@@ -4,6 +4,7 @@ import { Footer } from "./_components/footer";
 import { MoviesTrending } from "./_components/movies-trending";
 import { SeriesTrending } from "./_components/series-trending";
 import { HeroHome } from "./_components/hero-home";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -12,9 +13,13 @@ export default function Home() {
       <HeroHome href="/movie" contentType="movie" />
       <div className="  container pt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Filmes em tendência</p>
-        <a href="#" className="text-white text-sm font-semibold uppercase">
+        <Link
+          href="/filmes-em-tendencia"
+          title="Clique aqui e veja todos os filmes em tendência"
+          className="text-white text-sm font-semibold uppercase hover:underline"
+        >
           Ver todos
-        </a>
+        </Link>
       </div>
       <div className="py-8  container">
         <MoviesTrending />
@@ -26,9 +31,13 @@ export default function Home() {
 
       <div className="py-8  container flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Séries em tendência</p>
-        <a href="#" className="text-white text-sm font-semibold uppercase">
+        <Link
+          href="/series-em-tendencia"
+          title="Clique aqui e veja todos os séries em tendência"
+          className="text-white text-sm font-semibold uppercase hover:underline"
+        >
           Ver todos
-        </a>
+        </Link>
       </div>
 
       <div className="py-8  container mt-8">

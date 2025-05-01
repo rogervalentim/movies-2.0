@@ -31,7 +31,7 @@ export function Header() {
       <header className="sticky top-0 z-[1000] w-full border-b-2 border-[#333333]  bg-background">
         <div className="flex justify-between py-6 items-center container sticky top-0 z-50">
           <div className="flex w-full items-center justify-between gap-12">
-            <div className="lg:hidden">
+            <div className="lg:hidden flex items-center">
               {toggleMenu ? (
                 <button onClick={handleCloseToggleMenu}>
                   <X className="size-8 text-white hover:text-white/50" />
@@ -41,16 +41,6 @@ export function Header() {
                   <MenuIcon className="size-8 text-white hover:text-white/50" />
                 </button>
               )}
-            </div>
-
-            <div className="lg:hidden">
-              <Link
-                href="/"
-                className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity"
-                title="CineVerse"
-              >
-                <Clapperboard className="size-6 text-white" />
-              </Link>
             </div>
 
             <ul className="hidden lg:flex items-center gap-9 ">
