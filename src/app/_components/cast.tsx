@@ -76,6 +76,7 @@ export function Cast({ contentType, contentId }: CastProps) {
                       quality={100}
                       sizes="100vh"
                       className="w-full h-[380px] lg:h-[320px]"
+                      unoptimized
                     />
                   ) : (
                     <div className="flex items-center h-[380px] lg:h-[320px] justify-center">

@@ -58,6 +58,7 @@ export default function ImageCarousel({ movieImages }: ImageCarouselProps) {
                 quality={100}
                 className="w-full h-[200px] object-cover rounded-[3px] border border-[#333] shadow-md transition-transform duration-300 hover:scale-105 cursor-pointer"
                 onClick={() => openImage(index)}
+                unoptimized
               />
             </SwiperSlide>
           ))}
@@ -91,6 +92,7 @@ export default function ImageCarousel({ movieImages }: ImageCarouselProps) {
                     width={900}
                     height={500}
                     className="w-full h-full object-contain rounded-lg"
+                    unoptimized
                   />
                 </SwiperSlide>
               ))}

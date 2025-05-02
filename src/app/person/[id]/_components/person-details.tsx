@@ -94,6 +94,7 @@ export function PersonDetails({ id }: PersonDetailsProps) {
           quality={100}
           sizes="100vh"
           className="w-full h-full object-cover border border-[#333333] rounded-[3px]"
+          unoptimized
         />
         <h1 className="text-white font-bold text-xl md:text-3xl leading-tight">
           {personDetails?.name || "Título Indisponível"}

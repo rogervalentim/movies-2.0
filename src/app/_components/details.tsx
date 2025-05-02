@@ -8,12 +8,10 @@ import { Similar } from "./similar";
 import { Recommended } from "./recommended";
 import Image from "next/image";
 import ImageCarousel from "./image-carousel";
-import { RenderStars } from "@/utils/render-stars";
 import { formatDate } from "@/_utils/format-date";
 import { formatDuration } from "@/_utils/format-duration";
 import { Collection } from "./collection";
 import { Seasons } from "./seasons";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 interface DetailsProps {
@@ -69,190 +67,227 @@ export function Details({ id, contentType }: DetailsProps) {
   return (
     <section>
       {/* MOBILE */}
-      <div className="lg:hidden bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
-        <div className="container py-6 flex flex-col gap-4">
+      <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)]">
+        {/* MOBILE */}
+        <div className="lg:hidden py-6 container flex flex-col gap-4">
           {loading ? (
-            <Skeleton height={400} />
+            <div className="w-full h-[400px] rounded-lg bg-[#1f1f1f] animate-pulse" />
           ) : (
             <Image
               src={`https://image.tmdb.org/t/p/w780${movieDetails?.poster_path}`}
-              alt="image"
-              width={0}
-              height={0}
+              alt={movieDetails?.title || movieDetails?.name || "image"}
+              width={500}
+              height={750}
               quality={100}
-              sizes="100vh"
-              className="w-full h-full object-cover border border-[#333333] rounded-[3px]"
+              className="w-full h-[400px]  border border-[#333333] rounded-[3px]"
+              unoptimized
             />
           )}
 
-          <p className="text-slate-400 text-sm leading-relaxed">
-            {loading ? (
-              <Skeleton width={100} />
-            ) : (
-              formatDate(
-                movieDetails?.release_date ?? movieDetails?.first_air_date ?? ""
-              )
-            )}
-          </p>
-
-          <h1 className="text-white font-bold text-xl md:text-3xl leading-tight">
-            {loading ? (
-              <Skeleton width={200} />
-            ) : (
-              movieDetails?.title || movieDetails?.name
-            )}
-          </h1>
-
-          <div className="flex flex-wrap gap-1">
-            {loading ? (
-              <Skeleton count={3} width={80} height={24} />
-            ) : (
-              movieDetails?.genres.map((genre) => (
-                <span
-                  key={genre.id}
-                  className="text-slate-400 text-xs w-fit font-medium me-2 px-2.5 py-0.5 max-w-full rounded-full border-[0.3px] border-[#333333]"
-                >
-                  {genre.name}
-                </span>
-              ))
-            )}
-          </div>
-
-          <div className="flex items-center gap-3">
-            {loading ? (
-              <Skeleton circle width={40} height={40} />
-            ) : (
-              <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white text-black font-bold shadow-md">
-                {movieDetails?.vote_average?.toFixed(1)}
-              </span>
-            )}
-            <span className="flex">
+          <div className="flex flex-col gap-3">
+            <div className="text-slate-400 text-sm">
               {loading ? (
-                <Skeleton width={100} />
+                <div className="w-24 h-4 bg-[#1f1f1f] rounded animate-pulse" />
               ) : (
-                RenderStars(movieDetails?.vote_average)
+                formatDate(
+                  movieDetails?.release_date ??
+                    movieDetails?.first_air_date ??
+                    ""
+                )
               )}
-            </span>
-            {loading ? (
-              <Skeleton width={50} />
-            ) : (
-              <div>
-                {movieDetails?.runtime && (
-                  <p className="text-slate-400 text-base md:text-lg leading-relaxed">
-                    {formatDuration(movieDetails?.runtime)}
-                  </p>
-                )}
-              </div>
-            )}
-          </div>
+            </div>
 
-          <p className="text-slate-400 text-base md:text-lg leading-relaxed">
-            {loading ? (
-              <Skeleton count={3} />
-            ) : (
-              (movieDetails?.overview ??
-              "Nenhuma descrição disponível para este filme.")
-            )}
-          </p>
-        </div>
-      </div>
+            <h1 className="text-white font-bold text-2xl leading-tight">
+              {loading ? (
+                <div className="w-40 h-6 bg-[#1f1f1f] rounded animate-pulse" />
+              ) : (
+                movieDetails?.title || movieDetails?.name
+              )}
+            </h1>
 
-      {/* DESKTOP */}
-      <div className="bg-[radial-gradient(circle,rgba(255,255,255,0.05),#000)] h-[100%]">
-        <div className="relative py-6 hidden lg:flex justify-between items-center container">
-          <div className="w-[40%] h-full flex items-center justify-center">
-            <div className="flex flex-col gap-4">
-              <p className="text-slate-400 text-sm leading-relaxed">
-                {loading ? (
-                  <Skeleton width={100} />
-                ) : (
-                  formatDate(
-                    movieDetails?.release_date ??
-                      movieDetails?.first_air_date ??
-                      ""
-                  )
-                )}
-              </p>
-              <h1 className="text-white font-bold text-3xl md:text-4xl leading-tight">
-                {loading ? (
-                  <Skeleton width={250} />
-                ) : (
-                  movieDetails?.title || movieDetails?.name
-                )}
-              </h1>
-
-              <div className="flex flex-wrap gap-1">
-                {loading ? (
-                  <Skeleton count={4} width={80} height={24} />
-                ) : (
-                  movieDetails?.genres.map((genre) => (
+            <div className="flex flex-wrap gap-2">
+              {loading
+                ? Array(3)
+                    .fill(0)
+                    .map((_, i) => (
+                      <div
+                        key={i}
+                        className="w-20 h-6 bg-[#1f1f1f] rounded-full animate-pulse"
+                      />
+                    ))
+                : movieDetails?.genres.map((genre) => (
                     <span
                       key={genre.id}
-                      className="text-slate-400 text-xs w-fit font-medium me-2 px-2.5 py-0.5 max-w-full rounded-full border-[0.3px] border-[#333333]"
+                      className="text-slate-400 text-xs px-3 py-1 rounded-full border border-[#333333]"
                     >
                       {genre.name}
                     </span>
-                  ))
-                )}
-              </div>
+                  ))}
+            </div>
 
-              <div className="flex items-center gap-3">
-                {loading ? (
-                  <Skeleton circle width={40} height={40} />
-                ) : (
-                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white text-black font-bold shadow-md">
-                    {movieDetails?.vote_average?.toFixed(1)}
-                  </span>
-                )}
-                <span className="flex">
-                  {loading ? (
-                    <Skeleton width={100} />
-                  ) : (
-                    RenderStars(movieDetails?.vote_average)
-                  )}
+            <div className="flex items-center gap-4 flex-wrap">
+              {loading ? (
+                <div className="w-10 h-10 rounded-full bg-[#1f1f1f] animate-pulse" />
+              ) : (
+                <span
+                  className={`w-fit px-3 py-1 rounded-full text-sm font-semibold text-black shadow ${
+                    (movieDetails?.vote_average ?? 0) >= 7
+                      ? "bg-green-400 border-2 border-green-950"
+                      : (movieDetails?.vote_average ?? 0) >= 5
+                        ? "bg-yellow-400 border-2 border-yellow-950"
+                        : "bg-red-400 border-2 border-red-950"
+                  }`}
+                >
+                  Nota: {(movieDetails?.vote_average ?? 0).toFixed(1)}
                 </span>
-                {loading ? (
-                  <Skeleton width={50} />
-                ) : (
-                  <div>
-                    {movieDetails?.runtime && (
-                      <p className="text-slate-400 text-base md:text-lg leading-relaxed">
-                        {formatDuration(movieDetails?.runtime)}
-                      </p>
-                    )}
-                  </div>
-                )}
-              </div>
+              )}
 
-              <p className="text-slate-400 text-base leading-relaxed">
-                {loading ? (
-                  <Skeleton count={3} />
-                ) : (
-                  (movieDetails?.overview ??
-                  "Nenhuma descrição disponível para este filme.")
-                )}
-              </p>
+              {loading ? (
+                <div className="w-20 h-5 bg-[#1f1f1f] rounded animate-pulse" />
+              ) : (
+                movieDetails?.runtime && (
+                  <p className="text-slate-400 text-sm">
+                    {formatDuration(movieDetails.runtime)}
+                  </p>
+                )
+              )}
+            </div>
+
+            <div className="text-slate-400 text-sm leading-relaxed">
+              {loading ? (
+                <div className="space-y-2">
+                  <div className="w-full h-4 bg-[#1f1f1f] rounded animate-pulse" />
+                  <div className="w-4/5 h-4 bg-[#1f1f1f] rounded animate-pulse" />
+                  <div className="w-3/5 h-4 bg-[#1f1f1f] rounded animate-pulse" />
+                </div>
+              ) : (
+                movieDetails?.overview ||
+                "Nenhuma descrição disponível para este filme."
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* DESKTOP */}
+        <div className="hidden lg:flex py-10 container gap-8 items-center">
+          <div className="w-[45%] flex flex-col gap-5">
+            <div className="text-slate-400 text-sm">
+              {loading ? (
+                <div className="w-24 h-4 bg-[#1f1f1f] rounded animate-pulse" />
+              ) : (
+                formatDate(
+                  movieDetails?.release_date ??
+                    movieDetails?.first_air_date ??
+                    ""
+                )
+              )}
+            </div>
+
+            <h1 className="text-white font-bold text-4xl leading-tight">
+              {loading ? (
+                <div className="w-60 h-8 bg-[#1f1f1f] rounded animate-pulse" />
+              ) : (
+                movieDetails?.title || movieDetails?.name
+              )}
+            </h1>
+
+            <div className="flex flex-wrap gap-2">
+              {loading
+                ? Array(4)
+                    .fill(0)
+                    .map((_, i) => (
+                      <div
+                        key={i}
+                        className="w-20 h-6 bg-[#1f1f1f] rounded-full animate-pulse"
+                      />
+                    ))
+                : movieDetails?.genres.map((genre) => (
+                    <span
+                      key={genre.id}
+                      className="text-slate-400 text-xs px-3 py-1 rounded-full border border-[#333333]"
+                    >
+                      {genre.name}
+                    </span>
+                  ))}
+            </div>
+
+            <div className="flex items-center gap-4 flex-wrap">
+              {loading ? (
+                <div className="w-10 h-10 rounded-full bg-[#1f1f1f] animate-pulse" />
+              ) : (
+                <span
+                  className={`w-fit px-3 py-1 rounded-full text-sm font-semibold text-black shadow ${
+                    (movieDetails?.vote_average ?? 0) >= 7
+                      ? "bg-green-400 border-2 border-green-950"
+                      : (movieDetails?.vote_average ?? 0) >= 5
+                        ? "bg-yellow-400 border-2 border-yellow-950"
+                        : "bg-red-400 border-2 border-red-950"
+                  }`}
+                >
+                  Nota: {(movieDetails?.vote_average ?? 0).toFixed(1)}
+                </span>
+              )}
+
+              {loading ? (
+                <div className="w-20 h-5 bg-[#1f1f1f] rounded animate-pulse" />
+              ) : (
+                movieDetails?.runtime && (
+                  <p className="text-slate-400 text-sm">
+                    {formatDuration(movieDetails.runtime)}
+                  </p>
+                )
+              )}
+
+              {loading ? (
+                <>
+                  <div className="w-10 h-10 rounded-full bg-[#1f1f1f] animate-pulse" />
+                  <div className="w-24 h-5 bg-[#1f1f1f] rounded animate-pulse" />
+                </>
+              ) : (
+                movieDetails?.number_of_seasons && (
+                  <>
+                    <span className="w-fit px-3 py-1 rounded-full bg-white text-black font-bold text-sm shadow">
+                      {movieDetails.number_of_seasons}
+                    </span>
+                    <p className="text-slate-400 text-sm">Temporadas</p>
+                  </>
+                )
+              )}
+            </div>
+
+            <div className="text-slate-400 text-sm leading-relaxed">
+              {loading ? (
+                <div className="space-y-2">
+                  <div className="w-full h-4 bg-[#1f1f1f] rounded animate-pulse" />
+                  <div className="w-4/5 h-4 bg-[#1f1f1f] rounded animate-pulse" />
+                  <div className="w-3/5 h-4 bg-[#1f1f1f] rounded animate-pulse" />
+                </div>
+              ) : (
+                movieDetails?.overview ||
+                "Nenhuma descrição disponível para este filme."
+              )}
             </div>
           </div>
 
-          <div className="relative w-[60%] h-[500px]">
+          <div className="w-[55%] relative">
             {loading ? (
-              <Skeleton height={500} />
+              <div className="w-full h-[500px] bg-[#1f1f1f] rounded-lg animate-pulse" />
             ) : (
               <div
                 className="w-full h-[500px] bg-cover bg-center rounded-lg border border-[#333333]"
                 style={{
                   backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movieDetails?.backdrop_path})`
                 }}
-              ></div>
+              />
             )}
+
             {!loading && (
               <div
                 className="absolute bottom-4 left-4 w-40 h-56 bg-cover rounded-lg border border-[#333333]"
                 style={{
                   backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movieDetails?.poster_path})`
                 }}
-              ></div>
+              />
             )}
           </div>
         </div>

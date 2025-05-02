@@ -61,6 +61,7 @@ export function CollectionData() {
                 quality={100}
                 sizes="100vh"
                 className="w-full h-full object-cover border border-[#333333] rounded-[3px]"
+                unoptimized
               />
             ) : (
               <div className="flex items-center w-full h-full border border-[#333333] rounded-[3px] justify-center">

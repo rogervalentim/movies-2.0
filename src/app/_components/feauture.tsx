@@ -65,6 +65,7 @@ export function Feature({ contentType, href }: FeatureProps) {
               quality={100}
               sizes="100vh"
               className="w-full h-full"
+              unoptimized
             />
           </div>
         </Link>

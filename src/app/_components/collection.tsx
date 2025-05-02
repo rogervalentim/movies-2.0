@@ -54,7 +54,10 @@ export function Collection({ id, name, poster_path }: CollectionProps) {
             {name}
           </h1>
           <p className="text-white/50 text-sm lg:text-base break-words w-full overflow-hidden whitespace-normal">
-            {collectionData?.overview}
+            Incluindo:{" "}
+            {collectionData?.parts.map((item, index) => (
+              <span key={index}>{item.title.split(" ").join(" ")}</span>
+            ))}
           </p>
 
           <Link
@@ -75,6 +78,7 @@ export function Collection({ id, name, poster_path }: CollectionProps) {
           quality={100}
           sizes="100vh"
           className="w-full h-[500px]"
+          unoptimized
         />
       </div>
     </div>
