@@ -42,6 +42,7 @@ export function Card({
                   quality={100}
                   sizes="100vh"
                   className="w-full h-[380px] lg:h-[320px]"
+                  unoptimized
                 />
               </Link>
 
