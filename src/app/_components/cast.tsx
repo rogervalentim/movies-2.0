@@ -59,8 +59,11 @@ export function Cast({ contentType, contentId }: CastProps) {
             1280: { slidesPerView: 5.5, spaceBetween: 30 } // Telas grandes
           }}
         >
-          {cast.map((item) => (
-            <SwiperSlide className="w-full relative" key={`person- ${item.id}`}>
+          {cast.map((item, index) => (
+            <SwiperSlide
+              className="w-full relative"
+              key={`${item.id} ${index}`}
+            >
               <Link href={`/person/${item.id}`}>
                 <div className="rounded-[3px] relative h-[500px] lg:h-[450px] cursor-pointer border border-[#333333] hover:border-white">
                   {item?.profile_path ? (

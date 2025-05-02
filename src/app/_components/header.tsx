@@ -30,7 +30,7 @@ export function Header() {
     <>
       <header className="sticky top-0 z-[1000] w-full border-b-2 border-[#333333]  bg-background">
         <div className="flex justify-between py-6 items-center container sticky top-0 z-50">
-          <div className="flex w-full items-center justify-between gap-12">
+          <div className="flex w-full items-center lg:justify-between gap-4 lg:gap-12">
             <div className="lg:hidden flex items-center">
               {toggleMenu ? (
                 <button onClick={handleCloseToggleMenu}>
@@ -42,6 +42,10 @@ export function Header() {
                 </button>
               )}
             </div>
+
+            <Link href="/" className="lg:hidden">
+              <Clapperboard className="size-6 text-white" />
+            </Link>
 
             <ul className="hidden lg:flex items-center gap-9 ">
               <li className="hidden lg:block">
@@ -78,7 +82,7 @@ export function Header() {
 
             {/* Input de busca visível sempre */}
             <form
-              className="w-full max-w-sm min-w-[200px]"
+              className="w-full max-w-sm min-w-[150px]"
               onSubmit={handleSearchSubmit}
             >
               <div className="relative flex items-center">
@@ -88,11 +92,7 @@ export function Header() {
                   fill="currentColor"
                   className="absolute w-5 h-5 top-2.5 left-2.5 text-white"
                 >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
-                    clip-rule="evenodd"
-                  />
+                  <path d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" />
                 </svg>
 
                 <input

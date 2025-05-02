@@ -148,10 +148,6 @@ export function Footer() {
           <span className="text-sm text-black hover:text-gray-400 sm:text-center">
             © 2025 CineVerse. All Rights Reserved.
           </span>
-
-          <Link href="/" className="text-black hover:text-gray-400">
-            <Clapperboard />
-          </Link>
         </div>
       </div>
     </footer>
