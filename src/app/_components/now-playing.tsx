@@ -137,6 +137,7 @@ export default function NowPlaying({ contentType }: NowPlayProps) {
                     quality={100}
                     sizes="100vw"
                     className="object-cover rounded-[3px]"
+                    unoptimized
                   />
                 ) : (
                   <div className="flex items-center justify-center w-full h-full">
