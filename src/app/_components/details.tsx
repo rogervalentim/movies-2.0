@@ -71,15 +71,17 @@ export function Details({ id, contentType }: DetailsProps) {
         {/* MOBILE */}
         <div className="lg:hidden py-6 container flex flex-col gap-4">
           {loading ? (
-            <div className="w-full h-[400px] rounded-lg bg-[#1f1f1f] animate-pulse" />
+            <div className="w-full h-[500px] rounded-lg bg-[#1f1f1f] animate-pulse" />
           ) : (
             <Image
               src={`https://image.tmdb.org/t/p/w780${movieDetails?.poster_path}`}
-              alt={movieDetails?.title || movieDetails?.name || "image"}
-              width={500}
-              height={750}
+              alt="image"
+              width={0}
+              height={0}
+              key={movieDetails?.id}
               quality={100}
-              className="w-full h-[400px]  border border-[#333333] rounded-[3px]"
+              sizes="100vh"
+              className="w-full h-full object-cover border border-[#333333] rounded-[3px]"
               unoptimized
             />
           )}
