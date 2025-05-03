@@ -65,24 +65,17 @@ export function Hero({ contentType, href }: HeroProps) {
           <span className=" flex items-center justify-center w-10 h-10 rounded-full bg-white text-black font-bold shadow-md">
             {movie?.vote_average?.toFixed(1)}
           </span>
-          <span className="flex">{RenderStars(movie?.vote_average)}</span>
-          <div>
-            {movie?.imdb_id && (
-              <a
-                href={`https://www.imdb.com/title/${movie?.imdb_id}/`}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={`Veja  ${movie?.name || movie?.title} no IMDB`}
-              >
-                <Image
-                  src="/imdb-logo-2016-1.svg"
-                  width={50}
-                  height={50}
-                  alt="Logo do imdb"
-                />
-              </a>
-            )}
-          </div>
+          <span
+            className={`w-fit px-3 py-1 rounded-full text-sm font-semibold text-black shadow ${
+              (movie?.vote_average ?? 0) >= 7
+                ? "bg-green-400 border-2 border-green-950"
+                : (movie?.vote_average ?? 0) >= 5
+                  ? "bg-yellow-400 border-2 border-yellow-950"
+                  : "bg-red-400 border-2 border-red-950"
+            }`}
+          >
+            {(movie?.vote_average ?? 0).toFixed(1)}
+          </span>
         </div>
         <p className="text-slate-400 text-base md:text-lg leading-relaxed">
           {movie?.overview || "Nenhuma descrição disponível para este filme."}
@@ -116,8 +109,16 @@ export function Hero({ contentType, href }: HeroProps) {
                 </h1>
 
                 <div className="flex items-center gap-3">
-                  <span className="text-white">
-                    {movie?.vote_average?.toFixed(1)}
+                  <span
+                    className={`w-fit px-3 py-1 rounded-full text-sm font-semibold text-black shadow ${
+                      (movie?.vote_average ?? 0) >= 7
+                        ? "bg-green-400 border-2 border-green-950"
+                        : (movie?.vote_average ?? 0) >= 5
+                          ? "bg-yellow-400 border-2 border-yellow-950"
+                          : "bg-red-400 border-2 border-red-950"
+                    }`}
+                  >
+                    {(movie?.vote_average ?? 0).toFixed(1)}
                   </span>
                   <span className="flex">
                     {RenderStars(movie?.vote_average)}

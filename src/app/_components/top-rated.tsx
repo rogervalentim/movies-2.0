@@ -130,15 +130,24 @@ export default function TopRated({ contentType }: TopRatedProps) {
             >
               <div className="w-full aspect-[2/3] relative border border-[#333333] rounded-[3px] bg-black">
                 {item.poster_path ? (
-                  <Image
-                    src={`https://image.tmdb.org/t/p/w780${item.poster_path}`}
-                    alt={item.title || item.name || ""}
-                    fill
-                    quality={100}
-                    sizes="100vw"
-                    className="object-cover rounded-[3px]"
-                    unoptimized
-                  />
+                  <>
+                    <Image
+                      src={`https://image.tmdb.org/t/p/w780${item.poster_path}`}
+                      alt={item.title || item.name || ""}
+                      fill
+                      quality={100}
+                      sizes="100vw"
+                      className="object-cover rounded-[3px]"
+                      unoptimized
+                    />
+
+                    <div
+                      title="Média das avaliações dos usuários"
+                      className="absolute top-2 right-2 flex items-center justify-center w-10 h-10 rounded-full bg-white text-black font-bold shadow-md"
+                    >
+                      {item.vote_average?.toFixed(1)}
+                    </div>
+                  </>
                 ) : (
                   <div className="flex items-center justify-center w-full h-full">
                     <Clapperboard className="size-12 sm:size-20 fill-white text-transparent" />

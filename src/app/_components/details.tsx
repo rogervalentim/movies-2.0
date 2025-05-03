@@ -140,7 +140,7 @@ export function Details({ id, contentType }: DetailsProps) {
                         : "bg-red-400 border-2 border-red-950"
                   }`}
                 >
-                  Nota: {(movieDetails?.vote_average ?? 0).toFixed(1)}
+                  {(movieDetails?.vote_average ?? 0).toFixed(1)}
                 </span>
               )}
 
@@ -226,7 +226,7 @@ export function Details({ id, contentType }: DetailsProps) {
                         : "bg-red-400 border-2 border-red-950"
                   }`}
                 >
-                  Nota: {(movieDetails?.vote_average ?? 0).toFixed(1)}
+                  {(movieDetails?.vote_average ?? 0).toFixed(1)}
                 </span>
               )}
 

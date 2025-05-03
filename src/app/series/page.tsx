@@ -48,8 +48,8 @@ export default function SeriesPage() {
       <div className="container mt-16 flex items-center justify-between">
         <p className="text-lg text-white font-semibold">Séries em exibição</p>
         <Link
-          href="/filmes-em-exibicao"
-          title="Clique aqui e veja todos os filmes em exibição"
+          href="/series-em-exibicao"
+          title="Clique aqui e veja todos os séries em exibição"
           className="text-white text-sm font-semibold uppercase hover:underline"
         >
           Ver todos
