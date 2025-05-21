@@ -177,44 +177,46 @@ export function Header() {
 
       {/* Mobile Menu */}
       {toggleMenu && (
-        <div className="lg:hidden bg-white w-full   py-6 px-4 flex flex-col gap-4 animate-fade-in-down">
-          {[
-            { name: "Início", href: "/" },
-            { name: "Filmes", href: "/filmes" },
-            { name: "Séries", href: "/series" }
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setToggleMenu(false)}
-              className={`text-lg font-medium uppercase transition-colors ${
-                pathname === item.href
-                  ? "text-black"
-                  : "text-black/50 hover:text-black"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
+        <div className="bg-white w-full">
+          <div className="lg:hidden    py-6 container flex flex-col gap-4 animate-fade-in-down">
+            {[
+              { name: "Início", href: "/" },
+              { name: "Filmes", href: "/filmes" },
+              { name: "Séries", href: "/series" }
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setToggleMenu(false)}
+                className={`text-lg font-medium uppercase transition-colors ${
+                  pathname === item.href
+                    ? "text-black"
+                    : "text-black/50 hover:text-black"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
 
-          <form
-            onSubmit={handleSearchSubmit}
-            className="flex items-center gap-2"
-          >
-            <input
-              type="search"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Buscar filmes, séries e pessoas"
-              className="flex-1 border border-slate-300 rounded-md py-2 px-3 text-sm"
-            />
-            <button
-              type="submit"
-              className="px-4 py-2 bg-black text-white rounded-md text-sm"
+            <form
+              onSubmit={handleSearchSubmit}
+              className="flex items-center gap-2"
             >
-              Buscar
-            </button>
-          </form>
+              <input
+                type="search"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Buscar filmes, séries e pessoas"
+                className="flex-1 border border-slate-300 rounded-md py-2 px-3 text-sm"
+              />
+              <button
+                type="submit"
+                className="px-4 py-2 bg-black text-white rounded-md text-sm"
+              >
+                Buscar
+              </button>
+            </form>
+          </div>
         </div>
       )}
     </header>
