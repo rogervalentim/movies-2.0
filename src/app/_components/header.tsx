@@ -87,7 +87,7 @@ export function Header() {
               }`}
             >
               {[
-                { name: "Filmes", href: "/filmes" },
+                { name: "Filmes", href: "/movies" },
                 { name: "Em tendência", href: "/filmes-em-tendencia" },
                 {
                   name: "Melhores avaliados",
